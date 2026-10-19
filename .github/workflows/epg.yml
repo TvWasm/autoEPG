@@ -52,7 +52,20 @@ jobs:
           node-version: '24'
       - run: npm ci --omit=dev
       - name: Fetch and validate schedules
-        run: npm run generate
+        timeout-minutes: 12
+        run: |
+          for attempt in 1 2 3; do
+            if npm run generate; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::Schedule generation failed after 3 attempts; publication stopped."
+              exit 1
+            fi
+            delay=$((attempt * 30))
+            echo "::warning::Schedule generation attempt $attempt failed; retrying in ${delay}s."
+            sleep "$delay"
+          done
       - name: Refresh daily releases and promote today to Latest
         env:
           GH_TOKEN: ${{ github.token }}

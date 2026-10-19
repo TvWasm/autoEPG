@@ -88,3 +88,33 @@ test('network and decode failures exhaust retries and propagate to the caller', 
     assert.equal(attempts, 3);
   }
 });
+
+test('fetch failures retain nested connection error codes after bounded retries', async () => {
+  let attempts = 0;
+  const cause = new AggregateError([
+    Object.assign(new Error('connect timed out'), { code: 'ETIMEDOUT' }),
+    Object.assign(new Error('network unreachable'), { code: 'ENETUNREACH' }),
+  ]);
+  await assert.rejects(request('https://example.com', 'ProgrammeResponse', {
+    fetchImpl: async () => { attempts++; throw new TypeError('fetch failed', { cause }); },
+    delay: async () => {},
+  }), error => /fetch failed/.test(error.message) && /ETIMEDOUT/.test(error.message) && /ENETUNREACH/.test(error.message));
+  assert.equal(attempts, 3);
+});
+
+test('a transient connection failure can recover on the next request attempt', async () => {
+  let attempts = 0;
+  const delays = [];
+  const result = await request('https://example.com', 'ProgrammeResponse', {
+    fetchImpl: async () => {
+      if (++attempts === 1) throw new TypeError('fetch failed', {
+        cause: Object.assign(new Error('Connect Timeout Error'), { code: 'UND_ERR_CONNECT_TIMEOUT' }),
+      });
+      return new Response(programmeBytes);
+    },
+    delay: async ms => delays.push(ms),
+  });
+  assert.equal(result.dataList.length, 39);
+  assert.equal(attempts, 2);
+  assert.deepEqual(delays, [1000]);
+});

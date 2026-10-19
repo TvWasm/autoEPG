@@ -8,6 +8,18 @@ export const HOME = 'https://www.yangshipin.cn/tv/home';
 const API = 'https://capi.yangshipin.cn/api/';
 const schema = await protobuf.load(fileURLToPath(new URL('./yangshipin.proto', import.meta.url)));
 
+function errorDetail(error) {
+  const seen = new Set();
+  const describe = (value, depth = 0) => {
+    if (!value || seen.has(value) || depth > 4) return '';
+    seen.add(value);
+    const message = [value.code, value.message].filter(Boolean).join(': ');
+    const causes = [value.cause, ...(value.errors ?? [])].map(cause => describe(cause, depth + 1)).filter(Boolean);
+    return [message, ...causes].filter(Boolean).join('; ');
+  };
+  return describe(error).slice(0, 1000);
+}
+
 export function pngLogo(value) {
   if (!value) return '';
   const url = new URL(value);
@@ -57,7 +69,7 @@ export async function verifyPngLogos(channels, { fetchImpl = fetch, delay = slee
           if (!signature.every((value, i) => bytes[i] === value)) throw new Error('Response is not PNG');
           break;
         } catch (error) {
-          if (attempt === 2) throw new Error(`PNG logo check failed for ${url}: ${error.message}`);
+          if (attempt === 2) throw new Error(`PNG logo check failed for ${url}: ${errorDetail(error)}`, { cause: error });
           await delay(1000 * 2 ** attempt);
         }
       }
@@ -93,7 +105,7 @@ export async function request(url, type, {
       if (attempt + 1 < retries) await delay(1000 * 2 ** attempt);
     }
   }
-  throw new Error(`${url}: ${lastError.message}`, { cause: lastError });
+  throw new Error(`${url}: ${errorDetail(lastError)}`, { cause: lastError });
 }
 
 export function extractChannels(page) {
