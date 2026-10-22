@@ -4,11 +4,11 @@ import { officialRequest, nxtvProgrammes, xjtvsProgrammes, yntvProgrammes } from
 import { readFile } from 'node:fs/promises';
 import { transportFailure } from '../src/diagnostics.js';
 
-test('official HTTP requests retain caller authentication while supplying web-compatible defaults', async () => {
+test('official HTTP requests retain caller authentication without changing unrelated provider headers', async () => {
   assert.equal(await officialRequest('https://example.test/', {
     method: 'POST', body: '{}', headers: { Authorization: 'fixture', 'Content-Type': 'application/json' },
     fetchImpl: async (_url, init) => {
-      assert.match(init.headers['User-Agent'], /Mozilla/);
+      assert.equal(init.headers['User-Agent'], undefined);
       assert.equal(init.headers.Authorization, 'fixture');
       assert.equal(init.headers['Content-Type'], 'application/json');
       assert.equal(init.body, '{}');
@@ -34,11 +34,13 @@ test('official failures expose nested connection codes and server metadata witho
 test('Ningxia and Xinjiang request their own official website context', async () => {
   await nxtvProgrammes('nxgg', '2026-10-22', { fetchImpl: async (_url, init) => {
     assert.equal(init.headers.Referer, 'https://www.nxtv.cn/');
+    assert.match(init.headers['User-Agent'], /Mozilla/);
     assert.equal(init.headers.Origin, 'https://www.nxtv.cn');
     return Response.json({ errcode: 200, data: { appid: 'nxtv-tv', menu: [{ ename: 'nxgg', playbill: [] }] } });
   } });
   await xjtvsProgrammes('3', '2026-10-22', { fetchImpl: async (_url, init) => {
     assert.equal(init.headers.Referer, 'https://www.xjtvs.com.cn/');
+    assert.match(init.headers['User-Agent'], /Mozilla/);
     return Response.json({ success: true, data: [] });
   } });
 });

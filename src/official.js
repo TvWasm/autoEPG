@@ -19,9 +19,7 @@ function cached(key, options, work) {
 export async function officialRequest(url, { fetchImpl = fetch, delay = sleep, timeoutMs = 20_000, method, headers, body } = {}) {
   for (let attempt = 0; ; attempt++) {
     try {
-      const response = await fetchImpl(url, { method,
-        headers: { 'User-Agent': WEB_USER_AGENT, Accept: 'application/json, text/plain, */*', ...headers },
-        body, signal: AbortSignal.timeout(timeoutMs) });
+      const response = await fetchImpl(url, { method, headers, body, signal: AbortSignal.timeout(timeoutMs) });
       if (!response.ok) {
         // Only record transport metadata, never an HTML challenge or echoed credentials.
         const server = response.headers?.get('server');
@@ -279,7 +277,7 @@ export async function yntvProgrammes(channelId, date, options = {}) {
       // A browser CORS/network error does not prove the public API is unreachable
       // from the runner's HTTP client. Keep the same endpoint and validation.
       return JSON.parse(await officialRequest(url, { ...options,
-        headers: { Referer: 'https://www.yntv.cn/live.html', Origin: 'https://www.yntv.cn', ...options.headers },
+        headers: { 'User-Agent': WEB_USER_AGENT, Referer: 'https://www.yntv.cn/live.html', Origin: 'https://www.yntv.cn', ...options.headers },
       }));
     }
   });
@@ -302,7 +300,7 @@ export async function xjtvsProgrammes(channelId, date, options = {}) {
   const url = new URL('https://slstapi.xjtvs.com.cn/api/TVLiveV100/TVGuideList');
   url.search = new URLSearchParams({ tvChannelId: channelId, date: date + ' 00:00:00', json: 'true' });
   const body = JSON.parse(await officialRequest(url.href, { ...options,
-    headers: { Referer: 'https://www.xjtvs.com.cn/', Origin: 'https://www.xjtvs.com.cn', ...options.headers },
+    headers: { 'User-Agent': WEB_USER_AGENT, Referer: 'https://www.xjtvs.com.cn/', Origin: 'https://www.xjtvs.com.cn', ...options.headers },
   }));
   if (body.success !== true || !Array.isArray(body.data)) throw new Error('Invalid XJTV schedule response');
   return body.data.map(row => {
@@ -508,7 +506,7 @@ export async function nxtvProgrammes(channelId, date, options = {}) {
   if (!['nxws', 'nxgg', 'nxwl'].includes(channelId)) throw new Error('Invalid NXTV channel ID');
   const url = 'https://api.ningxiahuangheyun.com/?mod=get_appdata&appid=nxtv-tv';
   const body = await cached(url, options, async () => JSON.parse(await officialRequest(url, { ...options,
-    headers: { Referer: 'https://www.nxtv.cn/', Origin: 'https://www.nxtv.cn', ...options.headers },
+    headers: { 'User-Agent': WEB_USER_AGENT, Referer: 'https://www.nxtv.cn/', Origin: 'https://www.nxtv.cn', ...options.headers },
   })));
   if (body.errcode !== 200 || body.data?.appid !== 'nxtv-tv' || !Array.isArray(body.data.menu)) {
     throw new Error('Invalid NXTV schedule response');

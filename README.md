@@ -171,3 +171,9 @@ CCTV4 欧洲版、美洲版使用各自直播页实际调用的公开 JSON 接�
 ### 收到 Run failed 邮件时
 
 先查看 Actions 的作业结果：`test` 和 `publish` 成功、`Source errors after EPG publication` 失败，表示正常 EPG 已发布，但有部分源异常；失败通知是发布后的检查触发的。具体来源、HTTP 状态及网络错误原因在该作业摘要和 `epg-run-report` 构件中。GitHub 运行器与本地网络不同，本地成功不保证线上可达。不要用关闭错误检查来掩盖缺失频道。
+
+### 省台接口在 GitHub 运行器上持续超时或拒绝访问
+
+可注册一台能正常访问这些官网的国内 Ubuntu 22.04/24.04 Linux 自托管运行器，标签设为 `epg-cn`，然后在仓库 Settings → Secrets and variables → Actions → Variables 设置 `EPG_PUBLISH_RUNNER=epg-cn`。仅抓取/发布作业使用该标签；测试和通知仍在 GitHub 托管运行器执行。运行器应在线，并允许工作流安装 Chromium 系统依赖。未配置变量时继续使用 `ubuntu-latest`，不会自动安装或注册运行器。
+
+此选项改变请求发出的网络位置，不替换官方节目源。配置运行器后仍需检查实际报告；无法保证某台运行器一定获源站允许。[GitHub 运行器配置文档](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow)
