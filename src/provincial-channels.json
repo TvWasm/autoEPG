@@ -3027,7 +3027,12 @@
       ],
       "urls": [
         "https://news.hbtv.com.cn/app/tv/434"
-      ]
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000337",
+        "required": false
+      }
     },
     {
       "id": "hubeilocal182",
@@ -3053,7 +3058,12 @@
       ],
       "urls": [
         "https://news.hbtv.com.cn/app/tv/436"
-      ]
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000179",
+        "required": false
+      }
     },
     {
       "id": "hubeilocal184",

@@ -10,6 +10,8 @@ import { XMLParser } from 'fast-xml-parser';
 
 const fixtures = Object.fromEntries(await Promise.all(['204', '338', '339', '178', '180', '340'].map(async code =>
   [code, JSON.parse(await readFile(new URL(`./fixtures/provincial/hbtv-${code}.json`, import.meta.url), 'utf8'))])));
+fixtures['337'] = { code: 200, data: [] };
+fixtures['179'] = { code: 200, data: [] };
 
 function network(transform = body => body) {
   const requests = [];
@@ -30,10 +32,13 @@ function network(transform = body => body) {
 test('HBTV uses anonymous official web configuration and retains six real schedules including cross-midnight times', async () => {
   const options = network();
   const catalogue = { ...PROVINCIAL_CATALOGUE, channels: PROVINCIAL_CATALOGUE.channels.filter(c => c.native?.type === 'hbtv') };
-  assert.equal(catalogue.channels.length, 6);
+  assert.equal(catalogue.channels.length, 8);
   const source = new Provincial({ catalogue, dates: ['2026-10-21', '2026-10-22', '2026-10-23'], today: '2026-10-22', ...options });
   const channels = await source.channels();
   assert.equal(channels.length, 6);
+  assert.equal(source.report.unavailable.length, 2);
+  assert(source.report.unavailable.every(c => c.status === 'no-published-schedule'));
+  assert.equal(source.warnings.length, 0);
   assert.equal(options.requests.filter(u => u.includes('res.cjyun.org')).length, 3);
   const dataset = await collect({ channels: async () => channels, programmes: (c, d) => source.programmes(c, d) },
     { today: '2026-10-22', pastDays: 0, futureDays: 0, minChannels: 6, delayMs: 0 });
@@ -71,4 +76,17 @@ test('HBTV website changes and individual failures remain visible while healthy 
   await assert.rejects(hbtvProgrammes('99180001000000050000000000000338', '2026-10-22', {
     fetchImpl: async () => new Response('<html>website changed</html>'),
   }), /manifest missing/);
+});
+
+test('known empty official channels are polled and automatically imported when a schedule appears', async () => {
+  const catalogue = { ...PROVINCIAL_CATALOGUE, channels: PROVINCIAL_CATALOGUE.channels.filter(c => c.id === 'hubeilocal181') };
+  const options = network(body => {
+    if (!body.data.length) body.data = [{ ...fixtures['338'].data[0], channelcode: catalogue.channels[0].native.channelId }];
+    return body;
+  });
+  const source = new Provincial({ catalogue, dates: ['2026-10-22'], today: '2026-10-22', ...options });
+  const channels = await source.channels();
+  assert.equal(channels.length, 1);
+  assert.equal(channels[0].id, 'hubeilocal181');
+  assert.equal(source.report.importedCount, 1);
 });
