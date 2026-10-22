@@ -1,0 +1,216 @@
+{
+  "name": "民生频道",
+  "programs": [
+    {
+      "title": "睡不着剧场一深流",
+      "beginTime": "1792599000",
+      "endTime": "1792601580",
+      "signa": "MTQ2LDAwOjEwLDAwOjUzLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场二深流",
+      "beginTime": "1792601580",
+      "endTime": "1792604160",
+      "signa": "MTQ2LDAwOjUzLDAxOjM2LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场三深流",
+      "beginTime": "1792604160",
+      "endTime": "1792606740",
+      "signa": "MTQ2LDAxOjM2LDAyOjE5LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场四深流",
+      "beginTime": "1792606740",
+      "endTime": "1792609320",
+      "signa": "MTQ2LDAyOjE5LDAzOjAyLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场五深流",
+      "beginTime": "1792609320",
+      "endTime": "1792611900",
+      "signa": "MTQ2LDAzOjAyLDAzOjQ1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场六深流",
+      "beginTime": "1792611900",
+      "endTime": "1792614480",
+      "signa": "MTQ2LDAzOjQ1LDA0OjI4LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场七深流",
+      "beginTime": "1792614480",
+      "endTime": "1792617060",
+      "signa": "MTQ2LDA0OjI4LDA1OjExLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场八深流",
+      "beginTime": "1792617060",
+      "endTime": "1792619640",
+      "signa": "MTQ2LDA1OjExLDA1OjU0LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "睡不着剧场九深流",
+      "beginTime": "1792619640",
+      "endTime": "1792622220",
+      "signa": "MTQ2LDA1OjU0LDA2OjM3LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "民生北上先锋",
+      "beginTime": "1792622220",
+      "endTime": "1792624800",
+      "signa": "MTQ2LDA2OjM3LDA3OjIwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792624800",
+      "endTime": "1792626600",
+      "signa": "MTQ2LDA3OjIwLDA3OjUwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "上午好时光一",
+      "beginTime": "1792626600",
+      "endTime": "1792628700",
+      "signa": "MTQ2LDA3OjUwLDA4OjI1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792628700",
+      "endTime": "1792629900",
+      "signa": "MTQ2LDA4OjI1LDA4OjQ1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "上午好时光二",
+      "beginTime": "1792629900",
+      "endTime": "1792632000",
+      "signa": "MTQ2LDA4OjQ1LDA5OjIwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "上午好时光三",
+      "beginTime": "1792632000",
+      "endTime": "1792634100",
+      "signa": "MTQ2LDA5OjIwLDA5OjU1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "上午好时光四",
+      "beginTime": "1792634100",
+      "endTime": "1792635900",
+      "signa": "MTQ2LDA5OjU1LDEwOjI1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792635900",
+      "endTime": "1792637100",
+      "signa": "MTQ2LDEwOjI1LDEwOjQ1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "大象直播间直播版",
+      "beginTime": "1792637100",
+      "endTime": "1792645800",
+      "signa": "MTQ2LDEwOjQ1LDEzOjEwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792645800",
+      "endTime": "1792647000",
+      "signa": "MTQ2LDEzOjEwLDEzOjMwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "棋牌汇重播",
+      "beginTime": "1792647000",
+      "endTime": "1792650780",
+      "signa": "MTQ2LDEzOjMwLDE0OjMzLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "棋牌汇扩大版重播",
+      "beginTime": "1792650780",
+      "endTime": "1792654260",
+      "signa": "MTQ2LDE0OjMzLDE1OjMxLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792654260",
+      "endTime": "1792654740",
+      "signa": "MTQ2LDE1OjMxLDE1OjM5LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "双升英雄会重播上",
+      "beginTime": "1792654740",
+      "endTime": "1792657140",
+      "signa": "MTQ2LDE1OjM5LDE2OjE5LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "双升英雄会重播下",
+      "beginTime": "1792657140",
+      "endTime": "1792659240",
+      "signa": "MTQ2LDE2OjE5LDE2OjU0LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "香香美食预告",
+      "beginTime": "1792659240",
+      "endTime": "1792659300",
+      "signa": "MTQ2LDE2OjU0LDE2OjU1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792659300",
+      "endTime": "1792661100",
+      "signa": "MTQ2LDE2OjU1LDE3OjI1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "香香美食",
+      "beginTime": "1792661100",
+      "endTime": "1792663500",
+      "signa": "MTQ2LDE3OjI1LDE4OjA1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "小莉帮忙大参考直播",
+      "beginTime": "1792663500",
+      "endTime": "1792668900",
+      "signa": "MTQ2LDE4OjA1LDE5OjM1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "民生精华版",
+      "beginTime": "1792668900",
+      "endTime": "1792671000",
+      "signa": "MTQ2LDE5OjM1LDIwOjEwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "民生棋牌汇",
+      "beginTime": "1792671000",
+      "endTime": "1792674300",
+      "signa": "MTQ2LDIwOjEwLDIxOjA1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "棋牌汇特别版",
+      "beginTime": "1792674300",
+      "endTime": "1792677900",
+      "signa": "MTQ2LDIxOjA1LDIyOjA1LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "乐淘天下",
+      "beginTime": "1792677900",
+      "endTime": "1792678320",
+      "signa": "MTQ2LDIyOjA1LDIyOjEyLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "双升英雄会上",
+      "beginTime": "1792678320",
+      "endTime": "1792680360",
+      "signa": "MTQ2LDIyOjEyLDIyOjQ2LDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "双升英雄会下",
+      "beginTime": "1792680360",
+      "endTime": "1792682400",
+      "signa": "MTQ2LDIyOjQ2LDIzOjIwLDIwMjYtMTAtMjI="
+    },
+    {
+      "title": "棋牌汇扩大版",
+      "beginTime": "1792682400",
+      "endTime": "1792684620",
+      "signa": "MTQ2LDIzOjIwLDIzOjU3LDIwMjYtMTAtMjI="
+    }
+  ],
+  "cid": 146
+}

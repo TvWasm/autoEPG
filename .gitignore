@@ -3,3 +3,5 @@ dist/
 output/
 .playwright-cli/
 *.log
+
+.playwright-mcp/

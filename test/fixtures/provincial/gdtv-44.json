@@ -1,0 +1,150 @@
+{
+  "resultList": [
+    {
+      "dateAt": "2026-10-22",
+      "tvMenus": [
+        {
+          "pk": 294678104,
+          "name": "电视剧:云水怒(2-8)",
+          "beginAt": 1792601700000,
+          "endAt": 1792620000000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678105,
+          "name": "系列短剧:外来媳妇本地郎",
+          "beginAt": 1792620000000,
+          "endAt": 1792623600000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678106,
+          "name": "今日关注(重播)",
+          "beginAt": 1792623600000,
+          "endAt": 1792627500000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678107,
+          "name": "传奇剧场:我叫刘传说(26-32)",
+          "beginAt": 1792627500000,
+          "endAt": 1792659600000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678108,
+          "name": "人生一万年",
+          "beginAt": 1792659600000,
+          "endAt": 1792660800000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678109,
+          "name": "粤韵风华",
+          "beginAt": 1792660800000,
+          "endAt": 1792662600000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 678,
+          "anchor": null
+        },
+        {
+          "pk": 294678110,
+          "name": "今日财经",
+          "beginAt": 1792662600000,
+          "endAt": 1792663200000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 796,
+          "anchor": null
+        },
+        {
+          "pk": 294678111,
+          "name": "珠江新闻",
+          "beginAt": 1792663200000,
+          "endAt": 1792666800000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 674,
+          "anchor": null
+        },
+        {
+          "pk": 294678112,
+          "name": "珠江剧场:我的山与海(10)",
+          "beginAt": 1792666800000,
+          "endAt": 1792670400000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678113,
+          "name": "珠江剧场:我的山与海(11)",
+          "beginAt": 1792670400000,
+          "endAt": 1792674000000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678114,
+          "name": "今日关注",
+          "beginAt": 1792674000000,
+          "endAt": 1792678200000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 679,
+          "anchor": null
+        },
+        {
+          "pk": 294678115,
+          "name": "王牌剧场:荡寇(7)",
+          "beginAt": 1792678200000,
+          "endAt": 1792681500000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678116,
+          "name": "王牌剧场:荡寇(8)",
+          "beginAt": 1792681500000,
+          "endAt": 1792684500000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        },
+        {
+          "pk": 294678117,
+          "name": "今日关注(重播)",
+          "beginAt": 1792684500000,
+          "endAt": 1792688700000,
+          "playBackUrl": null,
+          "sid": null,
+          "tvColumnPk": 0,
+          "anchor": null
+        }
+      ]
+    }
+  ],
+  "systemTime": 1792633501750
+}

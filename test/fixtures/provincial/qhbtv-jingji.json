@@ -1,0 +1,125 @@
+{
+  "error_code": 200,
+  "error_message": "success",
+  "result": [
+    {
+      "id": "971716411641372672",
+      "title": " 《今日青海》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792623600,
+      "end_time_timestamp": 1792627200
+    },
+    {
+      "id": "971716411645566976",
+      "title": " 《百姓1时间》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792627200,
+      "end_time_timestamp": 1792630800
+    },
+    {
+      "id": "971716411649761280",
+      "title": " 《1时间生活》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792630800,
+      "end_time_timestamp": 1792634400
+    },
+    {
+      "id": "971716411653955584",
+      "title": " 《法治中国60分》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792634400,
+      "end_time_timestamp": 1792638000
+    },
+    {
+      "id": "971716411653955585",
+      "title": " 《银发时代》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792638000,
+      "end_time_timestamp": 1792641600
+    },
+    {
+      "id": "971716411658149888",
+      "title": " 《养生堂》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792641600,
+      "end_time_timestamp": 1792645200
+    },
+    {
+      "id": "971716411662344192",
+      "title": " 《档案》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792645200,
+      "end_time_timestamp": 1792648800
+    },
+    {
+      "id": "971716411662344193",
+      "title": " 《非尝不可》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792648800,
+      "end_time_timestamp": 1792652400
+    },
+    {
+      "id": "971716411666538496",
+      "title": " 《午间气象》     ",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792652400,
+      "end_time_timestamp": 1792656000
+    },
+    {
+      "id": "971716411670732800",
+      "title": " 《百姓1时间》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792656000,
+      "end_time_timestamp": 1792659600
+    },
+    {
+      "id": "971716411670732801",
+      "title": " 《1时间生活》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792659600,
+      "end_time_timestamp": 1792663200
+    },
+    {
+      "id": "971716411674927104",
+      "title": " 《法治中国60分》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792663200,
+      "end_time_timestamp": 1792666800
+    },
+    {
+      "id": "971716411679121408",
+      "title": " 《档案》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792666800,
+      "end_time_timestamp": 1792670400
+    },
+    {
+      "id": "971716411679121409",
+      "title": " 《银发时代》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792670400,
+      "end_time_timestamp": 1792674000
+    },
+    {
+      "id": "971716411683315712",
+      "title": " 《养生堂》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792674000,
+      "end_time_timestamp": 1792677600
+    },
+    {
+      "id": "971716411687510016",
+      "title": " 《此时此刻》（重播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792677600,
+      "end_time_timestamp": 1792681200
+    },
+    {
+      "id": "971716411687510017",
+      "title": " 《百姓1时间》（首播）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792681200,
+      "end_time_timestamp": 1792684799
+    }
+  ]
+}

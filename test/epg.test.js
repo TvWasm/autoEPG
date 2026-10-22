@@ -44,6 +44,25 @@ test('deduplicates identical rows but rejects conflicting schedules', () => {
   assert.throws(() => deduplicate([p, { ...p, title: 'Different' }]), /Conflicting/);
 });
 
+test('re-reads a changing upstream schedule before resolving a conflict, with an audit trail', async () => {
+  let calls = 0;
+  const data = await collect({ channels: async () => [channel], programmes: async () =>
+    ++calls === 1 ? [row('Old edit'), row('Published edit')] : [row('Published edit')],
+  }, options);
+  assert.equal(calls, 2);
+  assert.deepEqual(data.programmes.map(p => p.title), ['Published edit']);
+  assert.equal(data.manifest.scheduleRechecks.length, 1);
+  assert.deepEqual(data.manifest.scheduleRechecks[0].conflicts[0].map(p => p.title), ['Old edit', 'Published edit']);
+});
+
+test('persistent conflicting schedules fail after two rechecks without selecting a winner', async () => {
+  let calls = 0;
+  await assert.rejects(collect({ channels: async () => [channel], programmes: async () => {
+    calls++; return [row('One'), row('Two')];
+  } }, options), /Conflicting/);
+  assert.equal(calls, 3);
+});
+
 test('real Hunan and Guizhou schedule edits discard only zero-duration rows and report them by date', async () => {
   const cases = JSON.parse(await readFile(new URL('./fixtures/zero-duration-programmes.json', import.meta.url)));
   const directory = await mkdtemp(join(tmpdir(), 'autoepg-zero-duration-'));

@@ -1,0 +1,194 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "name": "00:00 精彩节目",
+      "channel_id": 302,
+      "start": 1792598401,
+      "look": "1",
+      "duration": 2219,
+      "endtime": 1792600620
+    },
+    {
+      "id": 745858,
+      "name": "00:37 光影派",
+      "channel_id": 302,
+      "start": 1792600620,
+      "look": "1",
+      "duration": 5880,
+      "endtime": null
+    },
+    {
+      "id": 745859,
+      "name": "02:15 都市条形码",
+      "channel_id": 302,
+      "start": 1792606500,
+      "look": "1",
+      "duration": 4620,
+      "endtime": null
+    },
+    {
+      "id": 745860,
+      "name": "03:32 大口马牙",
+      "channel_id": 302,
+      "start": 1792611120,
+      "look": "1",
+      "duration": 7680,
+      "endtime": null
+    },
+    {
+      "id": 745861,
+      "name": "05:40 云岭早晨",
+      "channel_id": 302,
+      "start": 1792618800,
+      "look": "1",
+      "duration": 180,
+      "endtime": null
+    },
+    {
+      "id": 745862,
+      "name": "05:43 第一剧场",
+      "channel_id": 302,
+      "start": 1792618980,
+      "look": "1",
+      "duration": 4320,
+      "endtime": null
+    },
+    {
+      "id": 745863,
+      "name": "06:55 第一剧场",
+      "channel_id": 302,
+      "start": 1792623300,
+      "look": "1",
+      "duration": 4500,
+      "endtime": null
+    },
+    {
+      "id": 745864,
+      "name": "08:10 第一剧场",
+      "channel_id": 302,
+      "start": 1792627800,
+      "look": "1",
+      "duration": 5820,
+      "endtime": null
+    },
+    {
+      "id": 745865,
+      "name": "09:47 第一剧场",
+      "channel_id": 302,
+      "start": 1792633620,
+      "look": "1",
+      "duration": 5280,
+      "endtime": null
+    },
+    {
+      "id": 745866,
+      "name": "11:15 都市条形码",
+      "channel_id": 302,
+      "start": 1792638900,
+      "look": "1",
+      "duration": 6840,
+      "endtime": null
+    },
+    {
+      "id": 745867,
+      "name": "13:09 新剧场",
+      "channel_id": 302,
+      "start": 1792645740,
+      "look": "1",
+      "duration": 4980,
+      "endtime": null
+    },
+    {
+      "id": 745868,
+      "name": "14:32 新剧场",
+      "channel_id": 302,
+      "start": 1792650720,
+      "look": "1",
+      "duration": 6120,
+      "endtime": null
+    },
+    {
+      "id": 745869,
+      "name": "16:14 新剧场",
+      "channel_id": 302,
+      "start": 1792656840,
+      "look": "1",
+      "duration": 3240,
+      "endtime": null
+    },
+    {
+      "id": 745870,
+      "name": "17:08 健康十分",
+      "channel_id": 302,
+      "start": 1792660080,
+      "look": "1",
+      "duration": 1320,
+      "endtime": null
+    },
+    {
+      "id": 745871,
+      "name": "17:30 码上开始",
+      "channel_id": 302,
+      "start": 1792661400,
+      "look": "1",
+      "duration": 900,
+      "endtime": null
+    },
+    {
+      "id": 745872,
+      "name": "17:45 都市条形码",
+      "channel_id": 302,
+      "start": 1792662300,
+      "look": "1",
+      "duration": 4500,
+      "endtime": null
+    },
+    {
+      "id": 745873,
+      "name": "19:00 大口马牙",
+      "channel_id": 302,
+      "start": 1792666800,
+      "look": "1",
+      "duration": 2700,
+      "endtime": null
+    },
+    {
+      "id": 745874,
+      "name": "19:45 新剧场",
+      "channel_id": 302,
+      "start": 1792669500,
+      "look": "2",
+      "duration": 4140,
+      "endtime": null
+    },
+    {
+      "id": 745875,
+      "name": "20:54 新剧场",
+      "channel_id": 302,
+      "start": 1792673640,
+      "look": "2",
+      "duration": 3180,
+      "endtime": null
+    },
+    {
+      "id": 745876,
+      "name": "21:47 新剧场",
+      "channel_id": 302,
+      "start": 1792676820,
+      "look": "2",
+      "duration": 3840,
+      "endtime": null
+    },
+    {
+      "id": 745877,
+      "name": "22:51 新闻联合播",
+      "channel_id": 302,
+      "start": 1792680660,
+      "look": "1",
+      "duration": 4139,
+      "endtime": null
+    }
+  ],
+  "streamer": "https://tvlive.yntv.cn/live/yunnandushi/playlist_dvr_range-"
+}

@@ -1,0 +1,481 @@
+{
+  "code": 1,
+  "data": {
+    "infos": [
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "0:00:00",
+        "end_time": "0:21:34",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 0,
+        "begintime": 1792598400,
+        "endtime": 1792599694
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "0:21:34",
+        "end_time": "1:02:05",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 1,
+        "begintime": 1792599694,
+        "endtime": 1792602125
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "1:02:05",
+        "end_time": "1:42:51",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 2,
+        "begintime": 1792602125,
+        "endtime": 1792604571
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "1:42:51",
+        "end_time": "2:23:43",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 3,
+        "begintime": 1792604571,
+        "endtime": 1792607023
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "2:23:43",
+        "end_time": "3:04:14",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 4,
+        "begintime": 1792607023,
+        "endtime": 1792609454
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "3:04:14",
+        "end_time": "3:44:54",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 5,
+        "begintime": 1792609454,
+        "endtime": 1792611894
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "3:44:54",
+        "end_time": "4:25:34",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 6,
+        "begintime": 1792611894,
+        "endtime": 1792614334
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "4:25:34",
+        "end_time": "5:06:29",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 7,
+        "begintime": 1792614334,
+        "endtime": 1792616789
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "5:06:29",
+        "end_time": "5:47:12",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 8,
+        "begintime": 1792616789,
+        "endtime": 1792619232
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "5:47:12",
+        "end_time": "5:59:18",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 9,
+        "begintime": 1792619232,
+        "endtime": 1792619958
+      },
+      {
+        "name": " 小溪办事                       ",
+        "start_time": "5:59:18",
+        "end_time": "6:16:18",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 10,
+        "begintime": 1792619958,
+        "endtime": 1792620978
+      },
+      {
+        "name": " 每日新闻                       ",
+        "start_time": "6:16:18",
+        "end_time": "6:31:23",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 11,
+        "begintime": 1792620978,
+        "endtime": 1792621883
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "6:31:23",
+        "end_time": "7:02:18",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 12,
+        "begintime": 1792621883,
+        "endtime": 1792623738
+      },
+      {
+        "name": " 烽火战魂                       ",
+        "start_time": "7:02:18",
+        "end_time": "7:36:13",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 13,
+        "begintime": 1792623738,
+        "endtime": 1792625773
+      },
+      {
+        "name": " 烽火战魂                       ",
+        "start_time": "7:36:13",
+        "end_time": "8:16:13",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 14,
+        "begintime": 1792625773,
+        "endtime": 1792628173
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "8:16:13",
+        "end_time": "8:36:13",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 15,
+        "begintime": 1792628173,
+        "endtime": 1792629373
+      },
+      {
+        "name": " 暗战风云                       ",
+        "start_time": "8:36:13",
+        "end_time": "09:05:13",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 16,
+        "begintime": 1792629373,
+        "endtime": 1792631113
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "9:05:13",
+        "end_time": "09:29:18",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 17,
+        "begintime": 1792631113,
+        "endtime": 1792632558
+      },
+      {
+        "name": " 暗战风云                       ",
+        "start_time": "9:29:18",
+        "end_time": "10:08:03",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 18,
+        "begintime": 1792632558,
+        "endtime": 1792634883
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "10:08:03",
+        "end_time": "10:39:09",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 19,
+        "begintime": 1792634883,
+        "endtime": 1792636749
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "10:39:09",
+        "end_time": "10:59:39",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 20,
+        "begintime": 1792636749,
+        "endtime": 1792637979
+      },
+      {
+        "name": " 小溪办事                       ",
+        "start_time": "10:59:39",
+        "end_time": "11:24:29",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 21,
+        "begintime": 1792637979,
+        "endtime": 1792639469
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "11:24:29",
+        "end_time": "11:54:39",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 22,
+        "begintime": 1792639469,
+        "endtime": 1792641279
+      },
+      {
+        "name": " 拉呱                           ",
+        "start_time": "11:54:39",
+        "end_time": "12:19:29",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 23,
+        "begintime": 1792641279,
+        "endtime": 1792642769
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "12:19:29",
+        "end_time": "12:43:19",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 24,
+        "begintime": 1792642769,
+        "endtime": 1792644199
+      },
+      {
+        "name": " 现场直击                       ",
+        "start_time": "12:43:19",
+        "end_time": "12:56:24",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 25,
+        "begintime": 1792644199,
+        "endtime": 1792644984
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "12:56:24",
+        "end_time": "13:16:59",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 26,
+        "begintime": 1792644984,
+        "endtime": 1792646219
+      },
+      {
+        "name": " 战地枪花                       ",
+        "start_time": "13:16:59",
+        "end_time": "13:52:04",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 27,
+        "begintime": 1792646219,
+        "endtime": 1792648324
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "13:52:04",
+        "end_time": "14:13:14",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 28,
+        "begintime": 1792648324,
+        "endtime": 1792649594
+      },
+      {
+        "name": " 战地枪花                       ",
+        "start_time": "14:13:14",
+        "end_time": "14:41:14",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 29,
+        "begintime": 1792649594,
+        "endtime": 1792651274
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "14:41:14",
+        "end_time": "15:01:39",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 30,
+        "begintime": 1792651274,
+        "endtime": 1792652499
+      },
+      {
+        "name": " 战地枪花                       ",
+        "start_time": "15:01:39",
+        "end_time": "15:39:29",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 31,
+        "begintime": 1792652499,
+        "endtime": 1792654769
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "15:39:29",
+        "end_time": "16:08:15",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 32,
+        "begintime": 1792654769,
+        "endtime": 1792656495
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "16:08:15",
+        "end_time": "16:43:35",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 33,
+        "begintime": 1792656495,
+        "endtime": 1792658615
+      },
+      {
+        "name": " 专题                           ",
+        "start_time": "16:43:35",
+        "end_time": "17:20:00",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 34,
+        "begintime": 1792658615,
+        "endtime": 1792660800
+      },
+      {
+        "name": " 拉呱                           ",
+        "start_time": "17:20:00",
+        "end_time": "17:45:00",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 35,
+        "begintime": 1792660800,
+        "endtime": 1792662300
+      },
+      {
+        "name": " 小溪办事                       ",
+        "start_time": "17:45:00",
+        "end_time": "18:15:00",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 36,
+        "begintime": 1792662300,
+        "endtime": 1792664100
+      },
+      {
+        "name": " 现场直击                       ",
+        "start_time": "18:15:00",
+        "end_time": "18:25:00",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 37,
+        "begintime": 1792664100,
+        "endtime": 1792664700
+      },
+      {
+        "name": " 每日新闻                       ",
+        "start_time": "18:25:00",
+        "end_time": "19:00:00",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 38,
+        "begintime": 1792664700,
+        "endtime": 1792666800
+      },
+      {
+        "name": " 关注                           ",
+        "start_time": "19:00:00",
+        "end_time": "19:05:55",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 39,
+        "begintime": 1792666800,
+        "endtime": 1792667155
+      },
+      {
+        "name": " 绝命后卫师                     ",
+        "start_time": "19:05:55",
+        "end_time": "20:04:46",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 40,
+        "begintime": 1792667155,
+        "endtime": 1792670686
+      },
+      {
+        "name": " 绝命后卫师                     ",
+        "start_time": "20:04:46",
+        "end_time": "21:02:21",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 41,
+        "begintime": 1792670686,
+        "endtime": 1792674141
+      },
+      {
+        "name": " 绝命后卫师                     ",
+        "start_time": "21:02:21",
+        "end_time": "21:45:46",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 42,
+        "begintime": 1792674141,
+        "endtime": 1792676746
+      },
+      {
+        "name": " 绝命后卫师                     ",
+        "start_time": "21:45:46",
+        "end_time": "22:16:56",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 43,
+        "begintime": 1792676746,
+        "endtime": 1792678616
+      },
+      {
+        "name": " 翡翠奇缘                       ",
+        "start_time": "22:16:56",
+        "end_time": "22:57:56",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 44,
+        "begintime": 1792678616,
+        "endtime": 1792681076
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "22:57:56",
+        "end_time": "23:40:07",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 45,
+        "begintime": 1792681076,
+        "endtime": 1792683607
+      },
+      {
+        "name": " 亲爱的养母                     ",
+        "start_time": "23:40:07",
+        "end_time": "23:59:59",
+        "cateid": "",
+        "catename": "",
+        "initRowIndex": 46,
+        "begintime": 1792683607,
+        "endtime": 1792684799
+      }
+    ]
+  },
+  "errmsg": "",
+  "score": {},
+  "t": 6.51513671875,
+  "s": "new"
+}

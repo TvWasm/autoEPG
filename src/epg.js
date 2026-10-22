@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { HOME } from './source.js';
 import { GROUPS, groupedChannels, groupFile } from './channels.js';
+import { sourceFailure, transportFailure } from './diagnostics.js';
 
 const DAY = 86_400;
 const OFFSET = 8 * 3600;
@@ -63,59 +64,132 @@ export function deduplicate(programmes) {
 export async function collect(source, {
   today = dateKey(Date.now() / 1000), pastDays = 3, futureDays = 3,
   concurrency = 4, minChannels = 50, minTodayCoverage = 0.9,
-  delayMs = 150, onProgress = () => {},
+  delayMs = 150, onProgress = () => {}, allowPartial = false,
 } = {}) {
   const range = windowFor(today, pastDays, futureDays);
   const channels = await source.channels();
-  if (channels.length < minChannels) throw new Error(`Only ${channels.length} channels; expected at least ${minChannels}`);
+  const warnings = [...(source.warnings ?? [])];
+  if (channels.length < minChannels) {
+    const message = `Only ${channels.length} channels; expected at least ${minChannels}`;
+    if (!allowPartial) throw new Error(message);
+    warnings.push({ code: 'min-channels', message });
+  }
   const first = dateKey(range.start), last = dateKey(range.stop - 1);
   // Include the preceding day's final programme if it crosses into our window.
   const firstFetch = dateKey(range.start - DAY);
   const tasks = channels.flatMap(channel => channel.dates
     .filter(date => date >= firstFetch && date <= last).map(date => ({ channel, date })));
-  const empty = [], failures = [], programmes = [], discarded = [];
+  const failures = [...(source.failures ?? [])], batches = new Map(), scheduleRechecks = [], brokenSources = new Map();
+  const failed = message => Object.assign(new Error(message), { failures, warnings });
+  const describe = (channel, date) => source.describeSource?.(channel, date) ??
+    { source: channel.sourceId ?? channel.source ?? 'yangshipin', sourceName: channel.sourceName ?? '央视频' };
+  const recordFailure = (channel, date, error, phase) => {
+    const details = describe(channel, date);
+    failures.push(sourceFailure({ ...details, url: details.url ?? channel.sourceUrls?.[0] ?? channel.url, channel, date, error, phase }));
+  };
+  const readSchedule = async ({ channel, date }, refresh = false) => {
+    const rows = refresh && source.refreshProgrammes
+      ? await source.refreshProgrammes(channel, date) : await source.programmes(channel, date);
+    const discarded = [];
+    // The extra day is only a lookback for programmes crossing midnight.
+    const relevant = date < first ? rows.filter(row => row.et > range.start) : rows;
+    const parsed = normalize(relevant, channel, date, { onDiscard: p => discarded.push(p) });
+    if (parsed.length && !parsed.some(p => dateKey(p.start) === date)) {
+      throw new Error('Response contains no programmes starting on the requested date');
+    }
+    return { channel, date, empty: !rows.length, discarded,
+      programmes: parsed.filter(p => p.start < range.stop && p.stop > range.start) };
+  };
   let next = 0, completed = 0;
   await Promise.all(Array.from({ length: Math.min(concurrency, tasks.length) }, async () => {
     while (next < tasks.length) {
       const { channel, date } = tasks[next++];
+      const provider = describe(channel, date).source;
+      if (allowPartial && (brokenSources.get(provider) ?? 0) >= 3) {
+        recordFailure(channel, date, 'Source circuit open after 3 consecutive transport failures; skipped remaining requests for this run', 'skipped');
+        onProgress(++completed, tasks.length);
+        continue;
+      }
       try {
-        const rows = await source.programmes(channel, date);
-        if (!rows.length) empty.push({ channel: channel.id, date });
-        // The extra day is only a lookback for programmes crossing midnight.
-        // Malformed old rows that ended before our window cannot affect this EPG.
-        const relevant = date < first ? rows.filter(row => row.et > range.start) : rows;
-        const parsed = normalize(relevant, channel, date, { onDiscard: p => discarded.push(p) });
-        if (parsed.length && !parsed.some(p => dateKey(p.start) === date)) {
-          throw new Error('Response contains no programmes starting on the requested date');
-        }
-        programmes.push(...parsed.filter(p => p.start < range.stop && p.stop > range.start));
+        batches.set(channel.id + '/' + date, await readSchedule({ channel, date }));
+        brokenSources.set(provider, 0);
       } catch (error) {
-        failures.push(`${channel.name}/${date}: ${error.message}`);
+        recordFailure(channel, date, error, 'fetch-or-validate');
+        if (transportFailure(error)) brokenSources.set(provider, (brokenSources.get(provider) ?? 0) + 1);
       }
       onProgress(++completed, tasks.length);
       if (delayMs) await sleep(delayMs);
     }
   }));
-  // Never publish a partial scrape after network/schema failures.
-  if (failures.length) throw new Error(`${failures.length} schedule request(s) failed:\n${failures.join('\n')}`);
-  const result = deduplicate(programmes);
-  if (!result.length) throw new Error('No programmes; refusing to publish an empty EPG');
+  if (failures.length && !allowPartial) throw failed(`${failures.length} schedule request(s) failed:\n${failures.map(f => `${f.channelName ?? f.sourceName}/${f.date ?? ''}: ${f.message}`).join('\n')}`);
+  // Re-read affected schedules to recover from an upstream edit during the run.
+  // A persistent ambiguity still fails: neither row order nor programme ID wins.
+  let result;
+  for (let attempt = 0; ; attempt++) {
+    const programmes = [...batches.values()].flatMap(batch => batch.programmes);
+    try { result = deduplicate(programmes); break; } catch (error) {
+      if (attempt === 2 && !allowPartial) throw error;
+      const candidates = new Map();
+      for (const batch of batches.values()) for (const p of batch.programmes) {
+        const key = p.channel + '/' + p.start;
+        if (!candidates.has(key)) candidates.set(key, []);
+        candidates.get(key).push({ date: batch.date, ...p });
+      }
+      const conflicts = [...candidates.values()].filter(rows => rows.some(p => p.title !== rows[0].title || p.stop !== rows[0].stop));
+      const affected = new Set(conflicts.flatMap(rows => rows.map(p => p.channel + '/' + p.date)));
+      if (attempt === 2) {
+        for (const key of affected) {
+          const batch = batches.get(key);
+          recordFailure(batch.channel, batch.date, error, 'conflict');
+          batches.delete(key);
+        }
+        scheduleRechecks.push({ attempt, reason: 'excluded-persistent-conflicts', conflicts, requestCount: 0 });
+        result = deduplicate([...batches.values()].flatMap(b => b.programmes));
+        break;
+      }
+      scheduleRechecks.push({ attempt: attempt + 1, reason: 'conflicting-programmes', conflicts, requestCount: affected.size });
+      if (delayMs) await sleep(delayMs);
+      for (const key of affected) {
+        const batch = batches.get(key);
+        try { batches.set(key, await readSchedule(batch, true)); }
+        catch (refreshError) {
+          if (!allowPartial) throw refreshError;
+          recordFailure(batch.channel, batch.date, refreshError, 'refresh');
+          batches.delete(key);
+        }
+      }
+    }
+  }
+  const empty = [...batches.values()].filter(b => b.empty).map(b => ({ channel: b.channel.id, date: b.date }));
+  const discarded = [...batches.values()].flatMap(b => b.discarded);
+  if (!result.length) throw failed('No programmes; refusing to publish an empty EPG');
   const todayChannels = new Set(result.filter(p => dateKey(p.start) === today).map(p => p.channel));
   const coverage = todayChannels.size / channels.length;
   if (coverage < minTodayCoverage) {
-    throw new Error(`Today's channel coverage ${(coverage * 100).toFixed(1)}% is below ${minTodayCoverage * 100}%`);
+    const message = `Today's channel coverage ${(coverage * 100).toFixed(1)}% is below ${minTodayCoverage * 100}%`;
+    if (!allowPartial) throw failed(message);
+    warnings.push({ code: 'today-coverage', message });
+  }
+  const current = windowFor(today, 0, 0);
+  if (allowPartial && !result.some(p => p.start < current.stop && p.stop > current.start)) {
+    throw failed('No valid current-day programmes; refusing to replace the current EPG');
   }
   const counts = new Map();
   for (const p of result) counts.set(p.channel, (counts.get(p.channel) ?? 0) + 1);
   const manifest = {
     generatedAt: new Date().toISOString(), referenceDate: today, source: HOME,
+    sources: [...new Set([HOME, ...channels.flatMap(c => c.sourceUrls ?? (c.url ? [c.url] : []))])],
+    ...(source.provincialCoverage ? { provincialCoverage: source.provincialCoverage } : {}),
     format: 'XMLTV', channelSchemaVersion: 2, encoding: 'UTF-8', timezone: 'Asia/Shanghai', logoFormat: 'PNG',
+    partial: failures.length > 0 || warnings.length > 0, failures, warnings,
     requestedDates: { from: first, to: last },
     channelCount: channels.length, programmeCount: result.length,
     channelsWithProgrammes: counts.size, todayChannelCoverage: coverage,
     earliestStart: new Date(result.reduce((min, p) => Math.min(min, p.start), Infinity) * 1000).toISOString(),
     latestStop: new Date(result.reduce((max, p) => Math.max(max, p.stop), -Infinity) * 1000).toISOString(),
-    requestCount: tasks.length, emptySchedules: empty.sort((a, b) => a.channel.localeCompare(b.channel) || a.date.localeCompare(b.date)),
+    requestCount: tasks.length + scheduleRechecks.reduce((sum, r) => sum + r.requestCount, 0),
+    emptySchedules: empty.sort((a, b) => a.channel.localeCompare(b.channel) || a.date.localeCompare(b.date)),
+    scheduleRechecks,
     discardedProgrammes: discarded.sort((a, b) => a.date.localeCompare(b.date) || a.channel.localeCompare(b.channel) ||
       a.start - b.start || String(a.programId).localeCompare(String(b.programId))),
     missingToday: channels.filter(c => !todayChannels.has(c.id)).map(c => ({ id: c.id, name: c.name })),
@@ -123,7 +197,7 @@ export async function collect(source, {
   return { channels, programmes: result, manifest };
 }
 
-export function renderXml(channels, programmes, { sourceName = '央视频' } = {}) {
+export function renderXml(channels, programmes, { sourceName = channels.some(c => c.source === 'provincial') ? '央视频 / 央视网 / 省级 EPG' : '央视频' } = {}) {
   const doc = create({ version: '1.0', encoding: 'UTF-8' });
   const tv = doc.ele('tv', {
     'generator-info-name': 'autoEPG', 'generator-info-url': 'https://github.com/TvWasm/autoEPG',
@@ -139,7 +213,7 @@ export function renderXml(channels, programmes, { sourceName = '央视频' } = {
       channel.ele('display-name', { lang: 'zh' }).txt(cleanText(name));
     }
     if (/^https?:\/\//.test(c.logo)) channel.ele('icon', { src: c.logo });
-    channel.ele('url').txt(`${HOME}?pid=${c.pid}`);
+    channel.ele('url').txt(c.url ?? `${HOME}?pid=${c.pid}`);
   }
   const rank = new Map(ordered.map((c, i) => [c.id, i]));
   for (const p of [...programmes].sort((a, b) => rank.get(a.channel) - rank.get(b.channel) || a.start - b.start)) {
@@ -202,6 +276,9 @@ export async function writeArtifacts(directory, dataset) {
       groups.push({ id: group.id, name: group.name, channelIds: members.map(c => c.id), feeds });
     }
     files['channels.json'] = Buffer.from(JSON.stringify(dataset.channels, null, 2) + '\n');
+    if (dataset.manifest.provincialCoverage) {
+      files['provincial-coverage.json'] = Buffer.from(JSON.stringify(dataset.manifest.provincialCoverage, null, 2) + '\n');
+    }
     files['groups.json'] = Buffer.from(JSON.stringify({ source: '央视频', channelSchemaVersion: 2, groups }, null, 2) + '\n');
     files['manifest.json'] = Buffer.from(JSON.stringify(manifest, null, 2) + '\n');
     files['SHA256SUMS'] = Buffer.from(Object.entries(files).map(([name, data]) =>

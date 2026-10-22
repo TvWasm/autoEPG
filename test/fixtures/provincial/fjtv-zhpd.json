@@ -1,0 +1,160 @@
+{
+  "error_code": 200,
+  "error_message": "success",
+  "result": [
+    {
+      "id": "971374367336366080",
+      "title": "重播：福建新闻联播",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792599900,
+      "end_time_timestamp": 1792601520
+    },
+    {
+      "id": "971374367340560384",
+      "title": "重播：帮帮团",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792601520,
+      "end_time_timestamp": 1792607400
+    },
+    {
+      "id": "971374367344754688",
+      "title": "设备检修",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792607400,
+      "end_time_timestamp": 1792618500
+    },
+    {
+      "id": "971374367348948992",
+      "title": "凌晨剧场：绝境交锋",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792618500,
+      "end_time_timestamp": 1792621500
+    },
+    {
+      "id": "971374367348948993",
+      "title": "重播：新闻启示录",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792621500,
+      "end_time_timestamp": 1792622100
+    },
+    {
+      "id": "971374367353143296",
+      "title": "重播：福建新闻联播",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792622100,
+      "end_time_timestamp": 1792624020
+    },
+    {
+      "id": "971374367357337600",
+      "title": "流金剧场：拯救者",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792624020,
+      "end_time_timestamp": 1792640100
+    },
+    {
+      "id": "971374367361531904",
+      "title": "高看一眼 海上福建 闽海双帆向深蓝",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792640100,
+      "end_time_timestamp": 1792641600
+    },
+    {
+      "id": "971374367361531905",
+      "title": "午间新时空",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792641600,
+      "end_time_timestamp": 1792643400
+    },
+    {
+      "id": "971374367365726208",
+      "title": "午间全省天气预报",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792643400,
+      "end_time_timestamp": 1792644480
+    },
+    {
+      "id": "971374367369920512",
+      "title": "重播：帮帮团",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792644480,
+      "end_time_timestamp": 1792649760
+    },
+    {
+      "id": "971374367374114816",
+      "title": "流金剧场：拯救者",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792649760,
+      "end_time_timestamp": 1792663200
+    },
+    {
+      "id": "971374367374114817",
+      "title": "帮帮团",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792663200,
+      "end_time_timestamp": 1792668360
+    },
+    {
+      "id": "971374367378309120",
+      "title": "全省天气预报",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792668360,
+      "end_time_timestamp": 1792668660
+    },
+    {
+      "id": "971374367382503424",
+      "title": "全省海洋环境预报",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792668660,
+      "end_time_timestamp": 1792668900
+    },
+    {
+      "id": "971374367382503425",
+      "title": "福建新闻联播",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792668900,
+      "end_time_timestamp": 1792670700
+    },
+    {
+      "id": "971374367386697728",
+      "title": "新闻启示录",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792670700,
+      "end_time_timestamp": 1792671600
+    },
+    {
+      "id": "971374367390892032",
+      "title": "第一剧场：足迹（27）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792671600,
+      "end_time_timestamp": 1792674420
+    },
+    {
+      "id": "971374367395086336",
+      "title": "第一剧场：足迹（28）",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792674420,
+      "end_time_timestamp": 1792677300
+    },
+    {
+      "id": "971374367399280640",
+      "title": "纵贯武夷之风展红旗",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792677300,
+      "end_time_timestamp": 1792680120
+    },
+    {
+      "id": "971374367399280641",
+      "title": "红军不怕远征难——红军家人话长征",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792680120,
+      "end_time_timestamp": 1792680720
+    },
+    {
+      "id": "971374367403474944",
+      "title": "精选剧场：破晓东方",
+      "date": "2026-10-22",
+      "star_time_timestamp": 1792680720,
+      "end_time_timestamp": 1792684799
+    }
+  ]
+}

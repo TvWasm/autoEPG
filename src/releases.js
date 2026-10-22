@@ -6,7 +6,8 @@ import { dateKey, windowFor } from './epg.js';
 export const ASSETS = ['epg.xml', 'channels.json', 'manifest.json', 'SHA256SUMS'];
 const OPTIONAL_ASSETS = ['epg2.xml', 'epg3.xml', 'groups.json',
   'epg-cctv.xml', 'epg2-cctv.xml', 'epg3-cctv.xml',
-  'epg-weishi.xml', 'epg2-weishi.xml', 'epg3-weishi.xml'];
+  'epg-weishi.xml', 'epg2-weishi.xml', 'epg3-weishi.xml',
+  'epg-provincial.xml', 'epg2-provincial.xml', 'epg3-provincial.xml', 'provincial-coverage.json'];
 
 function assetNames(names) {
   if (!Array.isArray(names) || new Set(names).size !== names.length ||

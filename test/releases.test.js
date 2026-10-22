@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { ASSETS, releasePolicy, upsertRelease, publishDirectory, deleteAllReleases } from '../src/releases.js';
 import { collect, writeArtifacts } from '../src/epg.js';
+import { needsNotification, notificationSummary } from '../src/notification.js';
 
 class FakeGitHub {
   repository = 'example/epg';
@@ -183,4 +184,29 @@ test('rebuild snapshots every page before deleting releases and only their assoc
   assert.equal(calls.filter(c => c.method === 'DELETE' && c.path.startsWith('/releases/')).length, 101);
   assert.equal(calls.filter(c => c.method === 'DELETE' && c.path.startsWith('/git/refs/tags/')).length, 101);
   assert(!calls.some(c => c.path.includes('/heads/')));
+});
+
+test('partial EPG is published before notification and failed status checks retain the successful release', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'autoepg-partial-publish-status-'));
+  try {
+    const dataset = await collect({
+      channels: async () => ['healthy', 'offline'].map(id => ({ id, pid: id, name: id, dates: [options.today] })),
+      programmes: async c => {
+        if (c.id === 'offline') throw new Error('HTTP 503');
+        const st = Date.parse(options.today + 'T08:00:00+08:00') / 1000;
+        return [{ name: '有效节目', st, et: st + 3600 }];
+      },
+    }, { today: options.today, pastDays: 0, futureDays: 0, allowPartial: true, minChannels: 50, delayMs: 0 });
+    await writeArtifacts(directory, dataset);
+    const api = new FakeGitHub();
+    assert.equal(await publishDirectory(api, directory, 'commit', { currentDate: () => options.today }), 1);
+    assert.equal(api.latest, options.today);
+    const report = { referenceDate: options.today, generation: { status: 'partial' }, publication: { status: 'succeeded' },
+      failures: dataset.manifest.failures, warnings: dataset.manifest.warnings };
+    assert.equal(needsNotification(report), true);
+    assert.match(notificationSummary(report), /发布完成/);
+    assert.equal(api.releases[0].draft, false);
+    assert.equal(api.latest, options.today);
+    assert(api.releases[0].assets.some(a => a.name === 'epg.xml'));
+  } finally { await rm(directory, { recursive: true, force: true }); }
 });

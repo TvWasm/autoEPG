@@ -1,0 +1,3241 @@
+{
+  "source": "https://github.com/buhanzhe/webSourceM3U8/blob/main/webview.txt",
+  "checkedAt": "2026-10-22",
+  "scope": "省级台及直辖市台旗下频道，排除市县台；同播清晰度和重复地址合并",
+  "channels": [
+    {
+      "id": "beijingweishi",
+      "name": "北京卫视",
+      "province": "北京",
+      "aliases": [
+        "北京卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002309",
+        "https://www.btime.com/btv/btvsy_index?tag=0"
+      ]
+    },
+    {
+      "id": "jiangsuweishi",
+      "name": "江苏卫视",
+      "province": "江苏",
+      "aliases": [
+        "江苏卫视",
+        "江苏卫视4K",
+        "江苏卫视4K超高清"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002521",
+        "https://live.jstv.com/?channelId=676",
+        "https://live.jstv.com/?channelId=670",
+        "https://live.jstv.com/",
+        "https://live.jstv.com/?tag=江苏卫视",
+        "https://live.jstv.com/?tag=江苏卫视4K超高清"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "676"
+      }
+    },
+    {
+      "id": "zhejiangweishi",
+      "name": "浙江卫视",
+      "province": "浙江",
+      "aliases": [
+        "浙江卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002520",
+        "https://www.cztv.com/liveTV/101"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "101"
+      }
+    },
+    {
+      "id": "hunanweishi",
+      "name": "湖南卫视",
+      "province": "湖南",
+      "aliases": [
+        "湖南卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002475"
+      ]
+    },
+    {
+      "id": "hubeiweishi",
+      "name": "湖北卫视",
+      "province": "湖北",
+      "aliases": [
+        "湖北卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002508",
+        "https://news.hbtv.com.cn/app/tv/431"
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000204"
+      }
+    },
+    {
+      "id": "guangdongweishi",
+      "name": "广东卫视",
+      "province": "广东",
+      "aliases": [
+        "广东卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002485",
+        "https://www.gdtv.cn/tvChannelDetail/43"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "43"
+      }
+    },
+    {
+      "id": "guangxiweishi",
+      "name": "广西卫视",
+      "province": "广西",
+      "aliases": [
+        "广西卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002509",
+        "https://tv.gxtv.cn/channel/channelivePlay_e7a7ab7df9fe11e88bcfe41f13b60c62.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "e7a7ab7df9fe11e88bcfe41f13b60c62",
+        "channelName": "广西卫视"
+      }
+    },
+    {
+      "id": "heilongjiangweishi",
+      "name": "黑龙江卫视",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002498",
+        "https://www.dbw.cn/zhibodan/zhibo_dan/hljws/",
+        "https://idclive.hljtv.com:4430/live/hljws_own.m3u8"
+      ]
+    },
+    {
+      "id": "hainanweishi",
+      "name": "海南卫视",
+      "province": "海南",
+      "aliases": [
+        "海南卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002506",
+        "http://tc.hnntv.cn/",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=13"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "13"
+      }
+    },
+    {
+      "id": "chongqingweishi",
+      "name": "重庆卫视",
+      "province": "重庆",
+      "aliases": [
+        "重庆卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002531"
+      ]
+    },
+    {
+      "id": "sichuanweishi",
+      "name": "四川卫视",
+      "province": "四川",
+      "aliases": [
+        "四川卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002516",
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=1"
+      ]
+    },
+    {
+      "id": "henanweishi",
+      "name": "河南卫视",
+      "province": "河南",
+      "aliases": [
+        "河南卫视"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=145",
+        "https://yangshipin.cn/tv/home?pid=600002525",
+        "https://static.hntv.tv/kds/#/",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=1",
+        "https://static.hntv.tv/total/television/?id=145&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "145"
+      }
+    },
+    {
+      "id": "dongnanweishi",
+      "name": "福建东南卫视",
+      "province": "福建",
+      "aliases": [
+        "福建东南卫视",
+        "东南卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002484",
+        "https://live.fjtv.net/setv/",
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248966136664064&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248966136664064"
+      }
+    },
+    {
+      "id": "guizhouweishi",
+      "name": "贵州卫视",
+      "province": "贵州",
+      "aliases": [
+        "贵州卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002490",
+        "https://www.gzstv.com/tv/ch01",
+        "https://www.gzstv.com/tv/ch01?utao=1"
+      ]
+    },
+    {
+      "id": "jiangxiweishi",
+      "name": "江西卫视",
+      "province": "江西",
+      "aliases": [
+        "江西卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002503",
+        "https://www.jxntv.cn/live/?tag=1#/jxtv1"
+      ]
+    },
+    {
+      "id": "liaoningweishi",
+      "name": "辽宁卫视",
+      "province": "辽宁",
+      "aliases": [
+        "辽宁卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002505"
+      ]
+    },
+    {
+      "id": "anhuiweishi",
+      "name": "安徽卫视",
+      "province": "安徽",
+      "aliases": [
+        "安徽卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002532",
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=0"
+      ]
+    },
+    {
+      "id": "hebeiweishi",
+      "name": "河北卫视",
+      "province": "河北",
+      "aliases": [
+        "河北卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002493",
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=0",
+        "https://web.cmc.hebtv.com/cms/rmt0336_html/19/19js/st/xdszb/10524916.shtml"
+      ]
+    },
+    {
+      "id": "shandongweishi",
+      "name": "山东卫视",
+      "province": "山东",
+      "aliases": [
+        "山东卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600002513",
+        "https://v.iqilu.com/live/sdtv/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "24"
+      }
+    },
+    {
+      "id": "tianjinweishi",
+      "name": "天津卫视",
+      "province": "天津",
+      "aliases": [
+        "天津卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600152137"
+      ]
+    },
+    {
+      "id": "jilinweishi",
+      "name": "吉林卫视",
+      "province": "吉林",
+      "aliases": [
+        "吉林卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190405",
+        "https://www.jlntv.cn/tv?tag=0",
+        "https://www.jlntv.cn/tv"
+      ]
+    },
+    {
+      "id": "shaanxiweishi",
+      "name": "陕西卫视",
+      "province": "陕西",
+      "aliases": [
+        "陕西卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190400",
+        "http://live.snrtv.com/star"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "star",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "gansuweishi",
+      "name": "甘肃卫视",
+      "province": "甘肃",
+      "aliases": [
+        "甘肃卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190408"
+      ]
+    },
+    {
+      "id": "ningxiaweishi",
+      "name": "宁夏卫视",
+      "province": "宁夏",
+      "aliases": [
+        "宁夏卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190737",
+        "https://www.nxtv.com.cn/19/19kds/dsp/"
+      ],
+      "native": {
+        "type": "nxtv",
+        "channelId": "nxws"
+      }
+    },
+    {
+      "id": "neimengguweishi",
+      "name": "内蒙古卫视",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190401",
+        "https://www.nmtv.cn/liveTv?tag=内蒙古卫视"
+      ]
+    },
+    {
+      "id": "yunnanweishi",
+      "name": "云南卫视",
+      "province": "云南",
+      "aliases": [
+        "云南卫视"
+      ],
+      "urls": [
+        "https://www.yntv.cn/live.html?name=yunnanweishi",
+        "https://yangshipin.cn/tv/home?pid=600190402",
+        "https://www.yntv.cn/live.html",
+        "https://www.yntv.cn/mobile/live.html"
+      ],
+      "native": {
+        "type": "yntv",
+        "channelId": "yunnanweishi"
+      }
+    },
+    {
+      "id": "shanxiweishi",
+      "name": "山西卫视",
+      "province": "山西",
+      "aliases": [
+        "山西卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190407",
+        "https://www.sxrtv.com/tv/index.shtml",
+        "https://apphhplushttps.sxrtv.com//television/live_wap_650.html"
+      ]
+    },
+    {
+      "id": "qinghaiweishi",
+      "name": "青海卫视",
+      "province": "青海",
+      "aliases": [
+        "青海卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190406",
+        "https://h5.qhbtv.com.cn/front-cloudlive-manage-h5/index.html?id=786181204964564992&company_id=1075&utaot=1"
+      ],
+      "native": {
+        "type": "qhbtv",
+        "channelId": "786181204964564992"
+      }
+    },
+    {
+      "id": "xizangweishi",
+      "name": "西藏卫视",
+      "province": "西藏",
+      "aliases": [
+        "西藏卫视"
+      ],
+      "urls": [
+        "https://yangshipin.cn/tv/home?pid=600190403"
+      ]
+    },
+    {
+      "id": "xinjiangweishi",
+      "name": "新疆卫视",
+      "province": "新疆",
+      "aliases": [
+        "新疆卫视"
+      ],
+      "urls": [
+        "https://www.yangshipin.cn/tv/home?pid=600152138",
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=1"
+      ]
+    },
+    {
+      "id": "anhuilocal1",
+      "name": "安徽经济生活",
+      "province": "安徽",
+      "aliases": [
+        "安徽经济生活"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=1"
+      ]
+    },
+    {
+      "id": "anhuilocal2",
+      "name": "安徽综艺·体育",
+      "province": "安徽",
+      "aliases": [
+        "安徽综艺·体育",
+        "安徽综艺体育",
+        "安徽综艺"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=2"
+      ]
+    },
+    {
+      "id": "anhuilocal3",
+      "name": "安徽国际",
+      "province": "安徽",
+      "aliases": [
+        "安徽国际"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=6"
+      ]
+    },
+    {
+      "id": "anhuilocal4",
+      "name": "安徽影视",
+      "province": "安徽",
+      "aliases": [
+        "安徽影视"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=3"
+      ]
+    },
+    {
+      "id": "anhuilocal5",
+      "name": "安徽公共",
+      "province": "安徽",
+      "aliases": [
+        "安徽公共"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=4"
+      ]
+    },
+    {
+      "id": "anhuilocal6",
+      "name": "安徽农业·科教",
+      "province": "安徽",
+      "aliases": [
+        "安徽农业·科教",
+        "安徽农业科教",
+        "安徽科教"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=5"
+      ]
+    },
+    {
+      "id": "anhuilocal7",
+      "name": "安徽移动电视",
+      "province": "安徽",
+      "aliases": [
+        "安徽移动电视"
+      ],
+      "urls": [
+        "https://www.ahtv.cn/folder9000/folder20193?channelIndex=7"
+      ]
+    },
+    {
+      "id": "fujianlocal8",
+      "name": "海峡卫视",
+      "province": "福建",
+      "aliases": [
+        "海峡卫视"
+      ],
+      "urls": [
+        "https://live.fjtv.net/hxtv/",
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248523855695872&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248523855695872"
+      }
+    },
+    {
+      "id": "fujianlocal9",
+      "name": "福建综合",
+      "province": "福建",
+      "aliases": [
+        "福建综合",
+        "福建综合频道"
+      ],
+      "urls": [
+        "https://live.fjtv.net/zhpd/",
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248990102917120&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248990102917120"
+      }
+    },
+    {
+      "id": "fujianlocal10",
+      "name": "福建新闻",
+      "province": "福建",
+      "aliases": [
+        "福建新闻",
+        "福建新闻频道"
+      ],
+      "urls": [
+        "https://live.fjtv.net/xwpd/",
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248914378952704&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248914378952704"
+      }
+    },
+    {
+      "id": "fujianlocal11",
+      "name": "福建文体",
+      "province": "福建",
+      "aliases": [
+        "福建文体",
+        "福建文旅体育"
+      ],
+      "urls": [
+        "https://live.fjtv.net/dspd/",
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248584991870976&company_id=468&utaot=1",
+        "https://live.zohi.tv/video/s10001-fztv-4/index.m3u8"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248584991870976"
+      }
+    },
+    {
+      "id": "fujianlocal12",
+      "name": "福建少儿",
+      "province": "福建",
+      "aliases": [
+        "福建少儿",
+        "福建少儿频道"
+      ],
+      "urls": [
+        "https://live.fjtv.net/sepd/",
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248553475870720&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248553475870720"
+      }
+    },
+    {
+      "id": "fujianlocal13",
+      "name": "福建乡村振兴公共",
+      "province": "福建",
+      "aliases": [
+        "福建乡村振兴公共"
+      ],
+      "urls": [
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248940467523584&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248940467523584"
+      }
+    },
+    {
+      "id": "fujianlocal14",
+      "name": "福建电视剧",
+      "province": "福建",
+      "aliases": [
+        "福建电视剧"
+      ],
+      "urls": [
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248891478052864&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248891478052864"
+      }
+    },
+    {
+      "id": "fujianlocal15",
+      "name": "福建旅游",
+      "province": "福建",
+      "aliases": [
+        "福建旅游"
+      ],
+      "urls": [
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248752898248704&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248752898248704"
+      }
+    },
+    {
+      "id": "fujianlocal16",
+      "name": "福建经济",
+      "province": "福建",
+      "aliases": [
+        "福建经济"
+      ],
+      "urls": [
+        "https://www.fjtv.net/front-cloudlive-manage-h5/index.html?id=665248614498799616&company_id=468&utaot=1"
+      ],
+      "native": {
+        "type": "fjtv",
+        "channelId": "665248614498799616"
+      }
+    },
+    {
+      "id": "guangdonglocal17",
+      "name": "广东珠江",
+      "province": "广东",
+      "aliases": [
+        "广东珠江"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/44"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "44"
+      }
+    },
+    {
+      "id": "guangdonglocal18",
+      "name": "广东新闻",
+      "province": "广东",
+      "aliases": [
+        "广东新闻"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/45"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "45"
+      }
+    },
+    {
+      "id": "guangdonglocal19",
+      "name": "广东民生",
+      "province": "广东",
+      "aliases": [
+        "广东民生",
+        "广东公共"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/48"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "48"
+      }
+    },
+    {
+      "id": "guangdonglocal20",
+      "name": "广东体育",
+      "province": "广东",
+      "aliases": [
+        "广东体育"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/47"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "47"
+      }
+    },
+    {
+      "id": "guangdonglocal21",
+      "name": "大湾区卫视",
+      "province": "广东",
+      "aliases": [
+        "大湾区卫视"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/51"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "51",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal22",
+      "name": "大湾区卫视（海外版）",
+      "province": "广东",
+      "aliases": [
+        "大湾区卫视（海外版）"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/46"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "46",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal23",
+      "name": "广东影视",
+      "province": "广东",
+      "aliases": [
+        "广东影视"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/53"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "53"
+      }
+    },
+    {
+      "id": "guangdonglocal24",
+      "name": "4K超高清",
+      "province": "广东",
+      "aliases": [
+        "4K超高清"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/16"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "16"
+      }
+    },
+    {
+      "id": "guangdonglocal25",
+      "name": "广东少儿",
+      "province": "广东",
+      "aliases": [
+        "广东少儿"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/54"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "54"
+      }
+    },
+    {
+      "id": "guangdonglocal26",
+      "name": "嘉佳卡通",
+      "province": "广东",
+      "aliases": [
+        "嘉佳卡通"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/66"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "66"
+      }
+    },
+    {
+      "id": "guangdonglocal27",
+      "name": "南方购物",
+      "province": "广东",
+      "aliases": [
+        "南方购物"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/42"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "42",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal28",
+      "name": "岭南戏曲",
+      "province": "广东",
+      "aliases": [
+        "岭南戏曲"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/15"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "15"
+      }
+    },
+    {
+      "id": "guangdonglocal29",
+      "name": "广东移动",
+      "province": "广东",
+      "aliases": [
+        "广东移动"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/74"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "74"
+      }
+    },
+    {
+      "id": "guangdonglocal30",
+      "name": "荔枝台",
+      "province": "广东",
+      "aliases": [
+        "荔枝台"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/100"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "100",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal31",
+      "name": "纪录片",
+      "province": "广东",
+      "aliases": [
+        "纪录片"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/94"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "94",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal32",
+      "name": "GRTN生活频道",
+      "province": "广东",
+      "aliases": [
+        "GRTN生活频道"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/102"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "102"
+      }
+    },
+    {
+      "id": "guangdonglocal33",
+      "name": "GRTN健康频道",
+      "province": "广东",
+      "aliases": [
+        "GRTN健康频道"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/99"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "99",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal34",
+      "name": "广东现代教育",
+      "province": "广东",
+      "aliases": [
+        "广东现代教育"
+      ],
+      "urls": [
+        "https://www.gdtv.cn/tvChannelDetail/111"
+      ],
+      "native": {
+        "type": "gdtv",
+        "channelId": "111",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "guangdonglocal35",
+      "name": "广东经济科教",
+      "province": "广东",
+      "aliases": [
+        "广东经济科教",
+        "经济科教"
+      ],
+      "urls": [
+        "https://jsv-live.sfccn.com/index?id=3920"
+      ]
+    },
+    {
+      "id": "guangxilocal36",
+      "name": "广西综艺旅游",
+      "province": "广西",
+      "aliases": [
+        "广西综艺旅游"
+      ],
+      "urls": [
+        "https://tv.gxtv.cn/channel/channelivePlay_f3335975f9fe11e88bcfe41f13b60c62.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "f3335975f9fe11e88bcfe41f13b60c62",
+        "channelName": "综艺旅游频道"
+      }
+    },
+    {
+      "id": "guangxilocal37",
+      "name": "广西都市",
+      "province": "广西",
+      "aliases": [
+        "广西都市"
+      ],
+      "urls": [
+        "https://tv.gxtv.cn/channel/channelivePlay_fdbaf085f9fe11e88bcfe41f13b60c62.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "fdbaf085f9fe11e88bcfe41f13b60c62",
+        "channelName": "都市频道"
+      }
+    },
+    {
+      "id": "guangxilocal38",
+      "name": "广西影视",
+      "province": "广西",
+      "aliases": [
+        "广西影视"
+      ],
+      "urls": [
+        "https://tv.gxtv.cn/channel/channelivePlay_5e923d82058e11e9ba67e41f13b60c62.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "5e923d82058e11e9ba67e41f13b60c62",
+        "channelName": "影视频道"
+      }
+    },
+    {
+      "id": "guangxilocal39",
+      "name": "广西新闻",
+      "province": "广西",
+      "aliases": [
+        "广西新闻"
+      ],
+      "urls": [
+        "https://tv.gxtv.cn/channel/channelivePlay_9dfd8600075811e9ba67e41f13b60c62.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "9dfd8600075811e9ba67e41f13b60c62",
+        "channelName": "新闻频道"
+      }
+    },
+    {
+      "id": "guangxilocal40",
+      "name": "广西国际",
+      "province": "广西",
+      "aliases": [
+        "广西国际"
+      ],
+      "urls": [
+        "https://tv.gxtv.cn/channel/channelivePlay_bfa17b64157f11e999f0e41f13b60c62.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "bfa17b64157f11e999f0e41f13b60c62",
+        "channelName": "国际频道"
+      }
+    },
+    {
+      "id": "guangxilocal41",
+      "name": "广西移动电视",
+      "province": "广西",
+      "aliases": [
+        "广西移动电视"
+      ],
+      "urls": [
+        "https://tv.gxtv.cn/channel/channelivePlay_78dbfd44e6b74ab687204d2d8113cbf5.html"
+      ],
+      "native": {
+        "type": "gxtv",
+        "channelId": "78dbfd44e6b74ab687204d2d8113cbf5",
+        "channelName": "移动数字电视频道"
+      }
+    },
+    {
+      "id": "guizhoulocal42",
+      "name": "贵州公共",
+      "province": "贵州",
+      "aliases": [
+        "贵州公共"
+      ],
+      "urls": [
+        "https://www.gzstv.com/tv/ch02",
+        "https://www.gzstv.com/tv/ch02?utao=1"
+      ]
+    },
+    {
+      "id": "guizhoulocal43",
+      "name": "贵州影视文艺",
+      "province": "贵州",
+      "aliases": [
+        "贵州影视文艺"
+      ],
+      "urls": [
+        "https://www.gzstv.com/tv/ch03",
+        "https://www.gzstv.com/tv/ch03?utao=1"
+      ]
+    },
+    {
+      "id": "guizhoulocal44",
+      "name": "贵州大众生活",
+      "province": "贵州",
+      "aliases": [
+        "贵州大众生活"
+      ],
+      "urls": [
+        "https://www.gzstv.com/tv/ch04",
+        "https://www.gzstv.com/tv/ch04?utao=1"
+      ]
+    },
+    {
+      "id": "guizhoulocal45",
+      "name": "贵州生态乡村",
+      "province": "贵州",
+      "aliases": [
+        "贵州生态乡村",
+        "贵州生态·乡村"
+      ],
+      "urls": [
+        "https://www.gzstv.com/tv/ch05",
+        "https://www.gzstv.com/tv/ch05?utao=1"
+      ]
+    },
+    {
+      "id": "guizhoulocal46",
+      "name": "贵州科教健康",
+      "province": "贵州",
+      "aliases": [
+        "贵州科教健康"
+      ],
+      "urls": [
+        "https://www.gzstv.com/tv/ch06",
+        "https://www.gzstv.com/tv/ch06?utao=1"
+      ]
+    },
+    {
+      "id": "guizhoulocal47",
+      "name": "贵州移动",
+      "province": "贵州",
+      "aliases": [
+        "贵州移动",
+        "贵州移动电视"
+      ],
+      "urls": [
+        "https://www.gzstv.com/tv/ch13",
+        "https://www.gzstv.com/tv/ch13?utao=1"
+      ]
+    },
+    {
+      "id": "hainanlocal48",
+      "name": "三沙卫视",
+      "province": "海南",
+      "aliases": [
+        "三沙卫视"
+      ],
+      "urls": [
+        "https://www.hnntv.cn/live.html?playType=livePlay&channelId=5&referPage=home",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=5"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "5"
+      }
+    },
+    {
+      "id": "hainanlocal49",
+      "name": "海南新闻",
+      "province": "海南",
+      "aliases": [
+        "海南新闻"
+      ],
+      "urls": [
+        "https://www.hnntv.cn/live.html?playType=livePlay&channelId=3&referPage=home",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=3"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "3"
+      }
+    },
+    {
+      "id": "hainanlocal50",
+      "name": "海南公共",
+      "province": "海南",
+      "aliases": [
+        "海南公共",
+        "海南社会与法"
+      ],
+      "urls": [
+        "https://www.hnntv.cn/live.html?playType=livePlay&channelId=4&referPage=home",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=4"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "4"
+      }
+    },
+    {
+      "id": "hainanlocal51",
+      "name": "海南文旅",
+      "province": "海南",
+      "aliases": [
+        "海南文旅"
+      ],
+      "urls": [
+        "https://www.hnntv.cn/live.html?playType=livePlay&channelId=6&referPage=home",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=6"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "6"
+      }
+    },
+    {
+      "id": "hainanlocal52",
+      "name": "海南少儿",
+      "province": "海南",
+      "aliases": [
+        "海南少儿"
+      ],
+      "urls": [
+        "https://www.hnntv.cn/live.html?playType=livePlay&channelId=7&referPage=home",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=7"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "7"
+      }
+    },
+    {
+      "id": "hainanlocal53",
+      "name": "海南自贸",
+      "province": "海南",
+      "aliases": [
+        "海南自贸"
+      ],
+      "urls": [
+        "https://www.hnntv.cn/live.html?playType=livePlay&channelId=1&referPage=home",
+        "https://service-app.hnntv.cn/AppEngine/appinfo/STHaiNan/share.html?userId=1&appId=STHaiNan&userId=1&channelId=1"
+      ],
+      "native": {
+        "type": "hnntv",
+        "channelId": "1"
+      }
+    },
+    {
+      "id": "hebeilocal54",
+      "name": "河北经济生活",
+      "province": "河北",
+      "aliases": [
+        "河北经济生活",
+        "河北经济"
+      ],
+      "urls": [
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=1",
+        "https://web.cmc.hebtv.com/cms/rmt0336_html/19/19js/st/xdszb/10516507.shtml?share=true"
+      ],
+      "native": {
+        "type": "hebtv",
+        "channelId": "114"
+      }
+    },
+    {
+      "id": "hebeilocal55",
+      "name": "河北都市",
+      "province": "河北",
+      "aliases": [
+        "河北都市"
+      ],
+      "urls": [
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=2",
+        "https://web.cmc.hebtv.com/cms/rmt0336_html/19/19js/st/xdszb/10516509.shtml?share=true"
+      ],
+      "native": {
+        "type": "hebtv",
+        "channelId": "62"
+      }
+    },
+    {
+      "id": "hebeilocal56",
+      "name": "河北文旅体育",
+      "province": "河北",
+      "aliases": [
+        "河北文旅体育"
+      ],
+      "urls": [
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=3"
+      ],
+      "native": {
+        "type": "hebtv",
+        "channelId": "334"
+      }
+    },
+    {
+      "id": "hebeilocal57",
+      "name": "河北少儿科教",
+      "province": "河北",
+      "aliases": [
+        "河北少儿科教"
+      ],
+      "urls": [
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=4",
+        "https://web.cmc.hebtv.com/cms/rmt0336_html/19/19js/st/xdszb/10516511.shtml?share=true"
+      ],
+      "native": {
+        "type": "hebtv",
+        "channelId": "70"
+      }
+    },
+    {
+      "id": "hebeilocal58",
+      "name": "河北三农",
+      "province": "河北",
+      "aliases": [
+        "河北三农",
+        "河北农民"
+      ],
+      "urls": [
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=5",
+        "https://web.cmc.hebtv.com/cms/rmt0336_html/19/19js/st/xdszb/10516508.shtml?share=true"
+      ],
+      "native": {
+        "type": "hebtv",
+        "channelId": "118"
+      }
+    },
+    {
+      "id": "hebeilocal59",
+      "name": "河北三佳购物",
+      "province": "河北",
+      "aliases": [
+        "河北三佳购物"
+      ],
+      "urls": [
+        "https://www.hebtv.com/19/19js/st/xdszb/index.shtml?index=6"
+      ],
+      "native": {
+        "type": "hebtv",
+        "channelId": "330",
+        "required": false,
+        "note": "官网接口当前未公布节目单，仍每日检查"
+      }
+    },
+    {
+      "id": "hebeilocal60",
+      "name": "河北影视剧",
+      "province": "河北",
+      "aliases": [
+        "河北影视剧",
+        "河北影视"
+      ],
+      "urls": [
+        "https://web.cmc.hebtv.com/cms/rmt0336_html/19/19js/st/xdszb/10516510.shtml?share=true"
+      ]
+    },
+    {
+      "id": "henanlocal61",
+      "name": "河南新闻",
+      "province": "河南",
+      "aliases": [
+        "河南新闻",
+        "新闻频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=149",
+        "https://static.hntv.tv/total/television/?id=149&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "149"
+      }
+    },
+    {
+      "id": "henanlocal62",
+      "name": "河南都市",
+      "province": "河南",
+      "aliases": [
+        "河南都市",
+        "都市频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=141",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=2",
+        "https://www.hntv2.net/index.html#/pages/tv/index",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=14"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "141"
+      }
+    },
+    {
+      "id": "henanlocal63",
+      "name": "河南民生",
+      "province": "河南",
+      "aliases": [
+        "河南民生",
+        "民生频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=146",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=3",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=15"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "146"
+      }
+    },
+    {
+      "id": "henanlocal64",
+      "name": "河南梨园",
+      "province": "河南",
+      "aliases": [
+        "河南梨园",
+        "梨园",
+        "梨园频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=154",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=4",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=16"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "154"
+      }
+    },
+    {
+      "id": "henanlocal65",
+      "name": "河南法治",
+      "province": "河南",
+      "aliases": [
+        "河南法治",
+        "法治频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=147",
+        "https://static.hntv.tv/total/television/?id=147&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "147"
+      }
+    },
+    {
+      "id": "henanlocal66",
+      "name": "河南公共",
+      "province": "河南",
+      "aliases": [
+        "河南公共",
+        "公共频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=151",
+        "https://static.hntv.tv/total/television/?id=151&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "151"
+      }
+    },
+    {
+      "id": "henanlocal67",
+      "name": "河南乡村",
+      "province": "河南",
+      "aliases": [
+        "河南乡村",
+        "河南乡村频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=152",
+        "https://static.hntv.tv/total/television/?id=152&u-link=1",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=5"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "152"
+      }
+    },
+    {
+      "id": "henanlocal68",
+      "name": "河南电视剧",
+      "province": "河南",
+      "aliases": [
+        "河南电视剧",
+        "电视剧频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=148",
+        "https://static.hntv.tv/total/television/?id=148&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "148"
+      }
+    },
+    {
+      "id": "henanlocal69",
+      "name": "河南文物宝库",
+      "province": "河南",
+      "aliases": [
+        "河南文物宝库",
+        "文物宝库"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=155",
+        "https://static.hntv.tv/total/television/?id=155&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "155"
+      }
+    },
+    {
+      "id": "henanlocal70",
+      "name": "河南武术世界",
+      "province": "河南",
+      "aliases": [
+        "河南武术世界",
+        "武术世界",
+        "武术频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=156",
+        "https://static.hntv.tv/total/television/?id=156&u-link=1",
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=6"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "156"
+      }
+    },
+    {
+      "id": "henanlocal71",
+      "name": "河南睛彩中原",
+      "province": "河南",
+      "aliases": [
+        "河南曲艺",
+        "睛彩中原",
+        "河南睛彩中原"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=157",
+        "https://static.hntv.tv/total/television/?id=157&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "157"
+      }
+    },
+    {
+      "id": "henanlocal72",
+      "name": "河南国学",
+      "province": "河南",
+      "aliases": [
+        "河南国学",
+        "国学",
+        "国学频道"
+      ],
+      "urls": [
+        "https://static.hntv.tv/kds/?cid=194",
+        "https://static.hntv.tv/total/television/?id=194&u-link=1"
+      ],
+      "native": {
+        "type": "hntv",
+        "channelId": "194"
+      }
+    },
+    {
+      "id": "henanlocal73",
+      "name": "河南远程党员教育",
+      "province": "河南",
+      "aliases": [
+        "河南远程党员教育"
+      ],
+      "urls": [
+        "https://www.hndyjyfw.gov.cn/livePlay.html?u=0"
+      ]
+    },
+    {
+      "id": "henanlocal74",
+      "name": "河南移动戏曲",
+      "province": "河南",
+      "aliases": [
+        "河南移动戏曲"
+      ],
+      "urls": [
+        "https://static.hntv.tv/total/television/?id=163&u-link=1"
+      ]
+    },
+    {
+      "id": "henanlocal75",
+      "name": "河南象视界",
+      "province": "河南",
+      "aliases": [
+        "河南象视界"
+      ],
+      "urls": [
+        "https://static.hntv.tv/total/television/?id=183&u-link=1"
+      ]
+    },
+    {
+      "id": "heilongjianglocal76",
+      "name": "黑龙江文体",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江文体"
+      ],
+      "urls": [
+        "https://www.dbw.cn/zhibodan/zhibo_dan/hljwt/",
+        "https://idclive.hljtv.com:4430/live/hljwy_hd.m3u8"
+      ]
+    },
+    {
+      "id": "heilongjianglocal77",
+      "name": "黑龙江影视",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江影视"
+      ],
+      "urls": [
+        "https://www.dbw.cn/zhibodan/zhibo_dan/hljys/",
+        "https://idclive.hljtv.com:4430/live/hljys_hd.m3u8"
+      ]
+    },
+    {
+      "id": "heilongjianglocal78",
+      "name": "黑龙江新闻法治",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江新闻法治"
+      ],
+      "urls": [
+        "https://www.dbw.cn/zhibodan/zhibo_dan/heilongjiang/",
+        "https://idclive.hljtv.com:4430/live/hljxw_hd.m3u8"
+      ]
+    },
+    {
+      "id": "heilongjianglocal79",
+      "name": "黑龙江都市",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江都市"
+      ],
+      "urls": [
+        "https://www.dbw.cn/zhibodan/zhibo_dan/hljds/",
+        "https://idclive.hljtv.com:4430/live/dushi_hd.m3u8"
+      ]
+    },
+    {
+      "id": "heilongjianglocal80",
+      "name": "黑龙江农业·科技",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江农业·科技"
+      ],
+      "urls": [
+        "https://www.dbw.cn/zhibodan/zhibo_dan/hljnykj/",
+        "https://idclive.hljtv.com:4430/live/hljgg_hd.m3u8"
+      ]
+    },
+    {
+      "id": "heilongjianglocal81",
+      "name": "黑龙江少儿",
+      "province": "黑龙江",
+      "aliases": [
+        "黑龙江少儿"
+      ],
+      "urls": [
+        "https://www.dbw.cn/zhibodan/zhibo_dan/hljse/",
+        "https://idclive.hljtv.com:4430/live/hljse_hd.m3u8"
+      ]
+    },
+    {
+      "id": "hunanlocal82",
+      "name": "金鹰卡通",
+      "province": "湖南",
+      "aliases": [
+        "金鹰卡通"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live",
+        "http://www.mgtv.com/live/?_source_=C",
+        "https://www.mgtv.com/live/?tag=金鹰卡通"
+      ]
+    },
+    {
+      "id": "hunanlocal83",
+      "name": "湖南经视",
+      "province": "湖南",
+      "aliases": [
+        "湖南经视"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=湖南经视"
+      ]
+    },
+    {
+      "id": "hunanlocal84",
+      "name": "湖南娱乐",
+      "province": "湖南",
+      "aliases": [
+        "湖南娱乐"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=湖南娱乐"
+      ]
+    },
+    {
+      "id": "hunanlocal85",
+      "name": "湖南电影",
+      "province": "湖南",
+      "aliases": [
+        "湖南电影"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=湖南电影"
+      ]
+    },
+    {
+      "id": "hunanlocal86",
+      "name": "湖南都市",
+      "province": "湖南",
+      "aliases": [
+        "湖南都市"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=湖南都市"
+      ]
+    },
+    {
+      "id": "hunanlocal87",
+      "name": "湖南电视剧",
+      "province": "湖南",
+      "aliases": [
+        "湖南电视剧"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=湖南电视剧"
+      ]
+    },
+    {
+      "id": "hunanlocal88",
+      "name": "金鹰纪实",
+      "province": "湖南",
+      "aliases": [
+        "金鹰纪实"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=金鹰纪实"
+      ]
+    },
+    {
+      "id": "hunanlocal89",
+      "name": "湖南爱晚",
+      "province": "湖南",
+      "aliases": [
+        "湖南爱晚"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=湖南爱晚"
+      ]
+    },
+    {
+      "id": "hunanlocal90",
+      "name": "国际频道",
+      "province": "湖南",
+      "aliases": [
+        "国际频道",
+        "湖南国际"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=国际频道"
+      ]
+    },
+    {
+      "id": "hunanlocal91",
+      "name": "先锋乒羽",
+      "province": "湖南",
+      "aliases": [
+        "先锋乒羽"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=先锋乒羽"
+      ]
+    },
+    {
+      "id": "hunanlocal92",
+      "name": "茶频道",
+      "province": "湖南",
+      "aliases": [
+        "茶频道"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=茶频道"
+      ]
+    },
+    {
+      "id": "hunanlocal93",
+      "name": "快乐垂钓",
+      "province": "湖南",
+      "aliases": [
+        "快乐垂钓"
+      ],
+      "urls": [
+        "https://www.mgtv.com/live/?tag=快乐垂钓"
+      ]
+    },
+    {
+      "id": "jilinlocal94",
+      "name": "吉林都市",
+      "province": "吉林",
+      "aliases": [
+        "吉林都市",
+        "吉视都市"
+      ],
+      "urls": [
+        "https://www.jlntv.cn/tv?tag=1"
+      ]
+    },
+    {
+      "id": "jilinlocal95",
+      "name": "吉林生活",
+      "province": "吉林",
+      "aliases": [
+        "吉林生活",
+        "吉视生活"
+      ],
+      "urls": [
+        "https://www.jlntv.cn/tv?tag=2"
+      ]
+    },
+    {
+      "id": "jilinlocal96",
+      "name": "吉林影视",
+      "province": "吉林",
+      "aliases": [
+        "吉林影视",
+        "吉视影视"
+      ],
+      "urls": [
+        "https://www.jlntv.cn/tv?tag=3"
+      ]
+    },
+    {
+      "id": "jilinlocal97",
+      "name": "吉林乡村",
+      "province": "吉林",
+      "aliases": [
+        "吉林乡村",
+        "吉视乡村"
+      ],
+      "urls": [
+        "https://www.jlntv.cn/tv?tag=4"
+      ]
+    },
+    {
+      "id": "jilinlocal98",
+      "name": "吉林综艺·文化",
+      "province": "吉林",
+      "aliases": [
+        "吉林综艺·文化",
+        "吉林综艺文化",
+        "吉视综艺文化"
+      ],
+      "urls": [
+        "https://www.jlntv.cn/tv?tag=5"
+      ]
+    },
+    {
+      "id": "jiangsulocal99",
+      "name": "江苏城市",
+      "province": "江苏",
+      "aliases": [
+        "江苏城市"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=669",
+        "https://live.jstv.com/?tag=江苏城市"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "669"
+      }
+    },
+    {
+      "id": "jiangsulocal100",
+      "name": "江苏综艺",
+      "province": "江苏",
+      "aliases": [
+        "江苏综艺"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=663",
+        "https://live.jstv.com/?tag=江苏综艺"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "663"
+      }
+    },
+    {
+      "id": "jiangsulocal101",
+      "name": "江苏影视",
+      "province": "江苏",
+      "aliases": [
+        "江苏影视"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=664",
+        "https://live.jstv.com/?tag=江苏影视"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "664"
+      }
+    },
+    {
+      "id": "jiangsulocal102",
+      "name": "江苏新闻",
+      "province": "江苏",
+      "aliases": [
+        "江苏新闻"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=668",
+        "https://live.jstv.com/?tag=江苏新闻"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "668"
+      }
+    },
+    {
+      "id": "jiangsulocal103",
+      "name": "江苏教育",
+      "province": "江苏",
+      "aliases": [
+        "江苏教育"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=666",
+        "https://live.jstv.com/?tag=江苏教育"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "666"
+      }
+    },
+    {
+      "id": "jiangsulocal104",
+      "name": "江苏体育休闲",
+      "province": "江苏",
+      "aliases": [
+        "江苏体育休闲",
+        "江苏体育·休闲",
+        "江苏休闲体育"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=665",
+        "https://live.jstv.com/?tag=体育休闲"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "665"
+      }
+    },
+    {
+      "id": "jiangsulocal105",
+      "name": "江苏国际",
+      "province": "江苏",
+      "aliases": [
+        "江苏国际"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=671",
+        "https://live.jstv.com/?tag=江苏国际"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "671"
+      }
+    },
+    {
+      "id": "jiangsulocal106",
+      "name": "优漫卡通",
+      "province": "江苏",
+      "aliases": [
+        "优漫卡通",
+        "江苏优漫卡通"
+      ],
+      "urls": [
+        "https://live.jstv.com/?channelId=667",
+        "https://live.jstv.com/?tag=优漫卡通"
+      ],
+      "native": {
+        "type": "jstv",
+        "channelId": "667"
+      }
+    },
+    {
+      "id": "jiangxilocal107",
+      "name": "江西都市",
+      "province": "江西",
+      "aliases": [
+        "江西都市"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=1#/jxtv2"
+      ]
+    },
+    {
+      "id": "jiangxilocal108",
+      "name": "江西经济生活",
+      "province": "江西",
+      "aliases": [
+        "江西经济生活"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=2#/jxtv3"
+      ]
+    },
+    {
+      "id": "jiangxilocal109",
+      "name": "江西影视",
+      "province": "江西",
+      "aliases": [
+        "江西影视"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=3#/jxtv4"
+      ]
+    },
+    {
+      "id": "jiangxilocal110",
+      "name": "江西农业",
+      "province": "江西",
+      "aliases": [
+        "江西农业",
+        "江西公共农业"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=4#/jxtv5"
+      ]
+    },
+    {
+      "id": "jiangxilocal111",
+      "name": "江西新闻",
+      "province": "江西",
+      "aliases": [
+        "江西新闻"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=6#/jxtv7"
+      ]
+    },
+    {
+      "id": "jiangxilocal112",
+      "name": "江西移动",
+      "province": "江西",
+      "aliases": [
+        "江西移动"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=7#/jxtv8"
+      ]
+    },
+    {
+      "id": "jiangxilocal113",
+      "name": "江西陶瓷",
+      "province": "江西",
+      "aliases": [
+        "江西陶瓷"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=8#/jxtv9"
+      ]
+    },
+    {
+      "id": "qinghailocal114",
+      "name": "青海经视",
+      "province": "青海",
+      "aliases": [
+        "青海经视"
+      ],
+      "urls": [
+        "https://h5.qhbtv.com.cn/front-cloudlive-manage-h5/index.html?id=786227316454875136&company_id=1075&utaot=1"
+      ],
+      "native": {
+        "type": "qhbtv",
+        "channelId": "786227316454875136"
+      }
+    },
+    {
+      "id": "qinghailocal115",
+      "name": "青海都市",
+      "province": "青海",
+      "aliases": [
+        "青海都市"
+      ],
+      "urls": [
+        "https://h5.qhbtv.com.cn/front-cloudlive-manage-h5/index.html?id=786227009616371712&company_id=1075&utaot=1"
+      ],
+      "native": {
+        "type": "qhbtv",
+        "channelId": "786227009616371712"
+      }
+    },
+    {
+      "id": "shandonglocal116",
+      "name": "山东齐鲁",
+      "province": "山东",
+      "aliases": [
+        "山东齐鲁"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/qlpd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "25"
+      }
+    },
+    {
+      "id": "shandonglocal117",
+      "name": "山东体育",
+      "province": "山东",
+      "aliases": [
+        "山东体育"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/typd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "26"
+      }
+    },
+    {
+      "id": "shandonglocal118",
+      "name": "山东生活",
+      "province": "山东",
+      "aliases": [
+        "山东生活"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/shpd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "29"
+      }
+    },
+    {
+      "id": "shandonglocal119",
+      "name": "山东综艺",
+      "province": "山东",
+      "aliases": [
+        "山东综艺"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/zypd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "28"
+      }
+    },
+    {
+      "id": "shandonglocal120",
+      "name": "山东新闻",
+      "province": "山东",
+      "aliases": [
+        "山东新闻"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/ggpd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "31"
+      }
+    },
+    {
+      "id": "shandonglocal121",
+      "name": "山东农科",
+      "province": "山东",
+      "aliases": [
+        "山东农科"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/nkpd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "30"
+      }
+    },
+    {
+      "id": "shandonglocal122",
+      "name": "山东文旅",
+      "province": "山东",
+      "aliases": [
+        "山东文旅"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/yspd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "27"
+      }
+    },
+    {
+      "id": "shandonglocal123",
+      "name": "山东少儿",
+      "province": "山东",
+      "aliases": [
+        "山东少儿"
+      ],
+      "urls": [
+        "https://v.iqilu.com/live/sepd/"
+      ],
+      "native": {
+        "type": "iqilu",
+        "channelId": "32"
+      }
+    },
+    {
+      "id": "shandonglocal124",
+      "name": "山东教育卫视",
+      "province": "山东",
+      "aliases": [
+        "山东教育卫视"
+      ],
+      "urls": [
+        "https://www.sdetv.com.cn/edu/pc/live/index.html"
+      ]
+    },
+    {
+      "id": "shanxilocal125",
+      "name": "山西经济与科技",
+      "province": "山西",
+      "aliases": [
+        "山西经济与科技",
+        "山西经济"
+      ],
+      "urls": [
+        "https://apphhplushttps.sxrtv.com//television/live_wap_653.html"
+      ],
+      "native": {
+        "type": "sxtv",
+        "channelId": "SXTV3"
+      }
+    },
+    {
+      "id": "shanxilocal126",
+      "name": "山西影视",
+      "province": "山西",
+      "aliases": [
+        "山西影视"
+      ],
+      "urls": [
+        "https://apphhplushttps.sxrtv.com//television/live_wap_654.html"
+      ],
+      "native": {
+        "type": "sxtv",
+        "channelId": "SXTV4"
+      }
+    },
+    {
+      "id": "shanxilocal127",
+      "name": "山西社会与法治",
+      "province": "山西",
+      "aliases": [
+        "山西社会与法治"
+      ],
+      "urls": [
+        "https://apphhplushttps.sxrtv.com//television/live_wap_655.html"
+      ],
+      "native": {
+        "type": "sxtv",
+        "channelId": "SXTV5"
+      }
+    },
+    {
+      "id": "shanxilocal128",
+      "name": "山西文体生活",
+      "province": "山西",
+      "aliases": [
+        "山西文体生活"
+      ],
+      "urls": [
+        "https://apphhplushttps.sxrtv.com//television/live_wap_656.html"
+      ],
+      "native": {
+        "type": "sxtv",
+        "channelId": "SXTV6"
+      }
+    },
+    {
+      "id": "shaanxilocal129",
+      "name": "陕西新闻资讯",
+      "province": "陕西",
+      "aliases": [
+        "陕西新闻资讯",
+        "陕西一套"
+      ],
+      "urls": [
+        "http://live.snrtv.com/1"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "1",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shaanxilocal130",
+      "name": "陕西都市青春",
+      "province": "陕西",
+      "aliases": [
+        "陕西都市青春",
+        "陕西二套"
+      ],
+      "urls": [
+        "http://live.snrtv.com/2"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "2",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shaanxilocal131",
+      "name": "陕西银龄",
+      "province": "陕西",
+      "aliases": [
+        "陕西银龄",
+        "陕西三套"
+      ],
+      "urls": [
+        "http://live.snrtv.com/3"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "3",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shaanxilocal132",
+      "name": "陕西秦腔",
+      "province": "陕西",
+      "aliases": [
+        "陕西秦腔",
+        "陕西五套"
+      ],
+      "urls": [
+        "http://live.snrtv.com/5"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "5",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shaanxilocal133",
+      "name": "陕西体育休闲",
+      "province": "陕西",
+      "aliases": [
+        "陕西体育休闲",
+        "陕西七套"
+      ],
+      "urls": [
+        "http://live.snrtv.com/7"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "7",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shaanxilocal134",
+      "name": "陕西农林",
+      "province": "陕西",
+      "aliases": [
+        "陕西农林",
+        "陕西农林卫视"
+      ],
+      "urls": [
+        "http://live.snrtv.com/nl"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "nl",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shaanxilocal135",
+      "name": "陕西移动",
+      "province": "陕西",
+      "aliases": [
+        "陕西移动"
+      ],
+      "urls": [
+        "http://live.snrtv.com/11",
+        "http://www.sxtvs.com/sxtvs_ydpd/index.html"
+      ],
+      "native": {
+        "type": "snrtv",
+        "channelId": "11",
+        "note": "Official clock-only schedule; current server day only"
+      }
+    },
+    {
+      "id": "shanghailocal136",
+      "name": "上海新闻综合",
+      "province": "上海",
+      "aliases": [
+        "上海新闻综合"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=2"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "2"
+      }
+    },
+    {
+      "id": "shanghailocal137",
+      "name": "上海都市",
+      "province": "上海",
+      "aliases": [
+        "上海都市"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=4"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "4"
+      }
+    },
+    {
+      "id": "shanghailocal138",
+      "name": "第一财经",
+      "province": "上海",
+      "aliases": [
+        "第一财经"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=5"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "5"
+      }
+    },
+    {
+      "id": "shanghailocal139",
+      "name": "哈哈炫动",
+      "province": "上海",
+      "aliases": [
+        "哈哈炫动"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=9"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "9"
+      }
+    },
+    {
+      "id": "shanghailocal140",
+      "name": "五星体育",
+      "province": "上海",
+      "aliases": [
+        "五星体育"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=10"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "10"
+      }
+    },
+    {
+      "id": "shanghailocal141",
+      "name": "魔都眼",
+      "province": "上海",
+      "aliases": [
+        "魔都眼"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=11"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "11",
+        "required": false
+      }
+    },
+    {
+      "id": "shanghailocal142",
+      "name": "新纪实",
+      "province": "上海",
+      "aliases": [
+        "新纪实"
+      ],
+      "urls": [
+        "https://live.kankanews.com/huikan?id=12"
+      ],
+      "native": {
+        "type": "kankanews",
+        "channelId": "12",
+        "required": false
+      }
+    },
+    {
+      "id": "xinjianglocal143",
+      "name": "新疆2套",
+      "province": "新疆",
+      "aliases": [
+        "新疆2套"
+      ],
+      "urls": [
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=3"
+      ],
+      "native": {
+        "type": "xjtvs",
+        "channelId": "3"
+      }
+    },
+    {
+      "id": "xinjianglocal144",
+      "name": "新疆3套",
+      "province": "新疆",
+      "aliases": [
+        "新疆3套"
+      ],
+      "urls": [
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=4"
+      ],
+      "native": {
+        "type": "xjtvs",
+        "channelId": "4"
+      }
+    },
+    {
+      "id": "xinjianglocal145",
+      "name": "新疆4套",
+      "province": "新疆",
+      "aliases": [
+        "新疆4套"
+      ],
+      "urls": [
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=16"
+      ],
+      "native": {
+        "type": "xjtvs",
+        "channelId": "16"
+      }
+    },
+    {
+      "id": "xinjianglocal146",
+      "name": "新疆5套",
+      "province": "新疆",
+      "aliases": [
+        "新疆5套"
+      ],
+      "urls": [
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=17"
+      ],
+      "native": {
+        "type": "xjtvs",
+        "channelId": "17"
+      }
+    },
+    {
+      "id": "xinjianglocal147",
+      "name": "新疆8套",
+      "province": "新疆",
+      "aliases": [
+        "新疆8套"
+      ],
+      "urls": [
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=23"
+      ],
+      "native": {
+        "type": "xjtvs",
+        "channelId": "23"
+      }
+    },
+    {
+      "id": "xinjianglocal148",
+      "name": "兵团卫视",
+      "province": "新疆",
+      "aliases": [
+        "兵团卫视",
+        "新建兵团卫视"
+      ],
+      "urls": [
+        "https://www.btzx.com.cn/2024new/new_zhibo/index.shtml"
+      ]
+    },
+    {
+      "id": "xinjianglocal149",
+      "name": "新疆7套",
+      "province": "新疆",
+      "aliases": [
+        "新疆7套"
+      ],
+      "urls": [
+        "https://www.xjtvs.com.cn/column/tv/434?channelId=21"
+      ],
+      "native": {
+        "type": "xjtvs",
+        "channelId": "21"
+      }
+    },
+    {
+      "id": "yunnanlocal150",
+      "name": "云南都市",
+      "province": "云南",
+      "aliases": [
+        "云南都市"
+      ],
+      "urls": [
+        "https://www.yntv.cn/live.html?name=yunnandushi",
+        "https://www.yntv.cn/mobile/live.html?ujs=JCQoIiN5dW5uYW5kdXNoaSIpLmNsaWNrKCk="
+      ],
+      "native": {
+        "type": "yntv",
+        "channelId": "yunnandushi"
+      }
+    },
+    {
+      "id": "yunnanlocal151",
+      "name": "云南娱乐",
+      "province": "云南",
+      "aliases": [
+        "云南娱乐"
+      ],
+      "urls": [
+        "https://www.yntv.cn/mobile/live.html?ujs=JCQoIiN5dW5uYW55dWxlIikuY2xpY2soKQ=="
+      ]
+    },
+    {
+      "id": "yunnanlocal152",
+      "name": "云南康旅",
+      "province": "云南",
+      "aliases": [
+        "云南康旅"
+      ],
+      "urls": [
+        "https://www.yntv.cn/live.html?name=yunnangonggong",
+        "https://www.yntv.cn/mobile/live.html?ujs=JCQoIiN5dW5uYW5nb25nZ29uZyIpLmNsaWNrKCk="
+      ],
+      "native": {
+        "type": "yntv",
+        "channelId": "yunnangonggong"
+      }
+    },
+    {
+      "id": "yunnanlocal153",
+      "name": "云南少儿",
+      "province": "云南",
+      "aliases": [
+        "云南少儿"
+      ],
+      "urls": [
+        "https://www.yntv.cn/mobile/live.html?ujs=JCQoIiN5dW5uYW5zaGFvZXIiKS5jbGljaygp"
+      ]
+    },
+    {
+      "id": "yunnanlocal154",
+      "name": "澜湄国际",
+      "province": "云南",
+      "aliases": [
+        "澜湄国际"
+      ],
+      "urls": [
+        "https://www.yntv.cn/live.html?name=yunnanguoji",
+        "https://www.yntv.cn/mobile/live.html?ujs=JCQoIiN5dW5uYW5ndW9qaSIpLmNsaWNrKCk="
+      ],
+      "native": {
+        "type": "yntv",
+        "channelId": "yunnanguoji"
+      }
+    },
+    {
+      "id": "zhejianglocal155",
+      "name": "浙江钱江",
+      "province": "浙江",
+      "aliases": [
+        "浙江钱江",
+        "浙江钱江都市",
+        "钱江"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/102"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "102"
+      }
+    },
+    {
+      "id": "zhejianglocal156",
+      "name": "浙江经济生活",
+      "province": "浙江",
+      "aliases": [
+        "浙江经济生活"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/103"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "103"
+      }
+    },
+    {
+      "id": "zhejianglocal157",
+      "name": "浙江教科影视",
+      "province": "浙江",
+      "aliases": [
+        "浙江教科影视"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/104"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "104"
+      }
+    },
+    {
+      "id": "zhejianglocal158",
+      "name": "浙江民生休闲",
+      "province": "浙江",
+      "aliases": [
+        "浙江民生休闲",
+        "浙江民生"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/106"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "106"
+      }
+    },
+    {
+      "id": "zhejianglocal159",
+      "name": "浙江新闻",
+      "province": "浙江",
+      "aliases": [
+        "浙江新闻",
+        "浙江公共新闻",
+        "浙江NEWS"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/107"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "107"
+      }
+    },
+    {
+      "id": "zhejianglocal160",
+      "name": "浙江少儿",
+      "province": "浙江",
+      "aliases": [
+        "浙江少儿"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/108"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "108"
+      }
+    },
+    {
+      "id": "zhejianglocal161",
+      "name": "浙江国际",
+      "province": "浙江",
+      "aliases": [
+        "浙江国际"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/110"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "110"
+      }
+    },
+    {
+      "id": "zhejianglocal162",
+      "name": "浙江好易购",
+      "province": "浙江",
+      "aliases": [
+        "浙江好易购"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/111"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "111"
+      }
+    },
+    {
+      "id": "zhejianglocal163",
+      "name": "浙江之江纪录",
+      "province": "浙江",
+      "aliases": [
+        "浙江之江纪录"
+      ],
+      "urls": [
+        "https://www.cztv.com/liveTV/112"
+      ],
+      "native": {
+        "type": "cztv",
+        "channelId": "112"
+      }
+    },
+    {
+      "id": "shanghailocal164",
+      "name": "上海教育",
+      "province": "上海",
+      "aliases": [
+        "上海教育",
+        "上海教育台"
+      ],
+      "urls": [
+        "https://www.setv.sh.cn/#/tvshow"
+      ],
+      "native": {
+        "type": "setv",
+        "channelId": "setv"
+      }
+    },
+    {
+      "id": "sichuanlocal165",
+      "name": "康巴卫视",
+      "province": "四川",
+      "aliases": [
+        "康巴卫视",
+        "四川康巴卫视"
+      ],
+      "urls": [
+        "https://www.kangbatv.com/zb_22587/",
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=9"
+      ]
+    },
+    {
+      "id": "sichuanlocal166",
+      "name": "四川新闻",
+      "province": "四川",
+      "aliases": [
+        "四川新闻"
+      ],
+      "urls": [
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=2"
+      ]
+    },
+    {
+      "id": "sichuanlocal167",
+      "name": "四川经济",
+      "province": "四川",
+      "aliases": [
+        "四川经济"
+      ],
+      "urls": [
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=3"
+      ]
+    },
+    {
+      "id": "sichuanlocal168",
+      "name": "四川文化旅游",
+      "province": "四川",
+      "aliases": [
+        "四川文化旅游"
+      ],
+      "urls": [
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=4"
+      ]
+    },
+    {
+      "id": "sichuanlocal169",
+      "name": "四川影视文艺",
+      "province": "四川",
+      "aliases": [
+        "四川影视文艺"
+      ],
+      "urls": [
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=5"
+      ]
+    },
+    {
+      "id": "sichuanlocal170",
+      "name": "四川妇女儿童",
+      "province": "四川",
+      "aliases": [
+        "四川妇女儿童"
+      ],
+      "urls": [
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=6"
+      ]
+    },
+    {
+      "id": "sichuanlocal171",
+      "name": "四川乡村",
+      "province": "四川",
+      "aliases": [
+        "四川乡村"
+      ],
+      "urls": [
+        "https://www.sctv.com/tv-web/js/tv/sctv/live.html?tag=8"
+      ]
+    },
+    {
+      "id": "chongqinglocal172",
+      "name": "重庆新闻综合",
+      "province": "重庆",
+      "aliases": [
+        "重庆新闻综合",
+        "重庆新闻"
+      ],
+      "urls": [
+        "https://www.cbg.cn/web/list/4918/1.html?5DEFC70C1A4AOD5173881C62BD4ACAD0"
+      ]
+    },
+    {
+      "id": "neimenggulocal173",
+      "name": "内蒙古新闻综合",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古新闻综合",
+        "内蒙古综合"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=新闻综合"
+      ]
+    },
+    {
+      "id": "neimenggulocal174",
+      "name": "内蒙古经济生活",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古经济生活"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=经济生活"
+      ]
+    },
+    {
+      "id": "neimenggulocal175",
+      "name": "内蒙古文体娱乐",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古文体娱乐"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=文体娱乐"
+      ]
+    },
+    {
+      "id": "neimenggulocal176",
+      "name": "内蒙古农牧",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古农牧"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=农牧频道"
+      ]
+    },
+    {
+      "id": "neimenggulocal177",
+      "name": "内蒙古蒙语卫视",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古蒙语卫视"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=内蒙古蒙古语卫视"
+      ]
+    },
+    {
+      "id": "neimenggulocal178",
+      "name": "内蒙古蒙语文化",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙古蒙语文化"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=内蒙古蒙古语文化"
+      ]
+    },
+    {
+      "id": "hubeilocal179",
+      "name": "湖北经视",
+      "province": "湖北",
+      "aliases": [
+        "湖北经视"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/432"
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000338"
+      }
+    },
+    {
+      "id": "hubeilocal180",
+      "name": "湖北综合",
+      "province": "湖北",
+      "aliases": [
+        "湖北综合"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/433"
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000339"
+      }
+    },
+    {
+      "id": "hubeilocal181",
+      "name": "湖北公共",
+      "province": "湖北",
+      "aliases": [
+        "湖北公共"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/434"
+      ]
+    },
+    {
+      "id": "hubeilocal182",
+      "name": "湖北影视",
+      "province": "湖北",
+      "aliases": [
+        "湖北影视"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/435"
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000178"
+      }
+    },
+    {
+      "id": "hubeilocal183",
+      "name": "湖北生活",
+      "province": "湖北",
+      "aliases": [
+        "湖北生活"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/436"
+      ]
+    },
+    {
+      "id": "hubeilocal184",
+      "name": "湖北教育",
+      "province": "湖北",
+      "aliases": [
+        "湖北教育"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/437"
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000180"
+      }
+    },
+    {
+      "id": "hubeilocal185",
+      "name": "湖北垄上",
+      "province": "湖北",
+      "aliases": [
+        "湖北垄上"
+      ],
+      "urls": [
+        "https://news.hbtv.com.cn/app/tv/438"
+      ],
+      "native": {
+        "type": "hbtv",
+        "channelId": "99180001000000050000000000000340"
+      }
+    },
+    {
+      "id": "beijinglocal186",
+      "name": "北京少儿",
+      "province": "北京",
+      "aliases": [
+        "北京少儿",
+        "卡酷少儿",
+        "BRTV卡酷少儿"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=8"
+      ]
+    },
+    {
+      "id": "jiangxilocal187",
+      "name": "江西少儿",
+      "province": "江西",
+      "aliases": [
+        "江西少儿"
+      ],
+      "urls": [
+        "https://www.jxntv.cn/live/?tag=5#/jxtv6"
+      ]
+    },
+    {
+      "id": "neimenggulocal188",
+      "name": "内蒙少儿",
+      "province": "内蒙古",
+      "aliases": [
+        "内蒙少儿",
+        "内蒙古少儿"
+      ],
+      "urls": [
+        "https://www.nmtv.cn/liveTv?tag=少儿频道"
+      ]
+    },
+    {
+      "id": "beijinglocal189",
+      "name": "北京文艺",
+      "province": "北京",
+      "aliases": [
+        "北京文艺"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=1"
+      ]
+    },
+    {
+      "id": "beijinglocal190",
+      "name": "北京纪实科教",
+      "province": "北京",
+      "aliases": [
+        "北京纪实科教",
+        "纪实科教"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=2"
+      ]
+    },
+    {
+      "id": "beijinglocal191",
+      "name": "北京影视",
+      "province": "北京",
+      "aliases": [
+        "北京影视"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=3"
+      ]
+    },
+    {
+      "id": "beijinglocal192",
+      "name": "北京财经",
+      "province": "北京",
+      "aliases": [
+        "北京财经"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=4"
+      ]
+    },
+    {
+      "id": "beijinglocal193",
+      "name": "北京体育",
+      "province": "北京",
+      "aliases": [
+        "北京体育",
+        "北京体育休闲",
+        "BRTV体育休闲"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=5"
+      ]
+    },
+    {
+      "id": "beijinglocal194",
+      "name": "北京生活",
+      "province": "北京",
+      "aliases": [
+        "北京生活"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=6"
+      ]
+    },
+    {
+      "id": "beijinglocal195",
+      "name": "北京新闻",
+      "province": "北京",
+      "aliases": [
+        "北京新闻"
+      ],
+      "urls": [
+        "https://www.btime.com/btv/btvsy_index?tag=7"
+      ]
+    },
+    {
+      "id": "ningxiagonggong",
+      "name": "宁夏公共",
+      "province": "宁夏",
+      "aliases": [
+        "宁夏公共"
+      ],
+      "urls": [
+        "https://www.nxtv.cn/19/19kds/nxggpd/index.shtml"
+      ],
+      "native": {
+        "type": "nxtv",
+        "channelId": "nxgg"
+      },
+      "catalogueOrigin": "official-supplement"
+    },
+    {
+      "id": "ningxiawenlv",
+      "name": "宁夏文旅",
+      "province": "宁夏",
+      "aliases": [
+        "宁夏文旅"
+      ],
+      "urls": [
+        "https://www.nxtv.cn/19/19kds/nxwlpd/index.shtml"
+      ],
+      "native": {
+        "type": "nxtv",
+        "channelId": "nxwl"
+      },
+      "catalogueOrigin": "official-supplement"
+    }
+  ],
+  "supplementarySources": [
+    "https://www.nxtv.cn/19/19kds/nxggpd/index.shtml",
+    "https://www.nxtv.cn/19/19kds/nxwlpd/index.shtml"
+  ]
+}

@@ -5,6 +5,7 @@ const profiles = JSON.parse(readFileSync(new URL('./channel-profiles.json', impo
 export const GROUPS = [
   { id: 'cctv', name: '央视频道', sourceType: 'yangshi' },
   { id: 'weishi', name: '卫视频道', sourceType: 'weishi' },
+  { id: 'provincial', name: '省级频道', sourceType: 'provincial' },
 ];
 
 export function channelProfile(pid, sourceName, sourceType) {
