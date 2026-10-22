@@ -16,7 +16,7 @@ function cached(key, options, work) {
   return options.cache.get(key);
 }
 
-export async function officialRequest(url, { fetchImpl = fetch, delay = sleep, timeoutMs = 20_000, method, headers, body } = {}) {
+export async function officialRequest(url, { fetchImpl = fetch, delay = sleep, timeoutMs = 20_000, attempts = 3, method, headers, body } = {}) {
   for (let attempt = 0; ; attempt++) {
     try {
       const response = await fetchImpl(url, { method, headers, body, signal: AbortSignal.timeout(timeoutMs) });
@@ -28,7 +28,7 @@ export async function officialRequest(url, { fetchImpl = fetch, delay = sleep, t
       }
       return await response.text();
     } catch (error) {
-      if (attempt === 2) throw new Error(`${errorMessage(url)}: ${errorMessage(connectionReason(error))}`, { cause: error });
+      if (attempt + 1 >= attempts) throw new Error(`${errorMessage(url)}: ${errorMessage(connectionReason(error))}`, { cause: error });
       await delay(1000 * 2 ** attempt);
     }
   }
@@ -259,6 +259,13 @@ export async function yntvProgrammes(channelId, date, options = {}) {
   const url = 'https://yntv-api.yntv.cn/index/jmd/getJmd?' + new URLSearchParams({ name: channelId, da: date });
   const body = await cached(url, options, async () => {
     if (options.yntvRequest) return options.yntvRequest(url);
+    let httpError;
+    try {
+      return JSON.parse(await officialRequest(url, { ...options, attempts: 1,
+        timeoutMs: Math.min(options.timeoutMs ?? 20_000, 8000),
+        headers: { 'User-Agent': WEB_USER_AGENT, Referer: 'https://www.yntv.cn/live.html', Origin: 'https://www.yntv.cn', ...options.headers },
+      }));
+    } catch (error) { httpError = error; }
     try {
       const page = options.yntvPage ?? await yntvBrowser(options);
       return await page.evaluate(async url => {
@@ -273,12 +280,8 @@ export async function yntvProgrammes(channelId, date, options = {}) {
           }
         }
       }, url);
-    } catch {
-      // A browser CORS/network error does not prove the public API is unreachable
-      // from the runner's HTTP client. Keep the same endpoint and validation.
-      return JSON.parse(await officialRequest(url, { ...options,
-        headers: { 'User-Agent': WEB_USER_AGENT, Referer: 'https://www.yntv.cn/live.html', Origin: 'https://www.yntv.cn', ...options.headers },
-      }));
+    } catch (error) {
+      throw new Error(`YNTV HTTP: ${errorMessage(httpError)}; browser: ${errorMessage(error)}`, { cause: error });
     }
   });
   if (!Array.isArray(body.lists) || body.streamer !== `https://tvlive.yntv.cn/live/${channelId}/playlist_dvr_range-`) {
@@ -422,25 +425,38 @@ export async function jstvProgrammes(channelId, date, options = {}) {
 async function gdtvBrowser(options) {
   return cached('gdtv:browser', options, async () => {
     const { chromium } = await import('playwright');
-    const browser = await chromium.launch({ headless: true });
-    options.resources?.push(browser);
-    const page = await browser.newPage();
-    await page.route('**/*', route => {
-      const request = route.request(), url = new URL(request.url());
-      if (['image', 'font', 'media'].includes(request.resourceType()) || /\.m3u8|\.ts(?:\?|$)|\/incrReadCount/.test(url.href) ||
-          (!['gdtv.cn', 'itouchtv.cn'].some(host => url.hostname === host || url.hostname.endsWith('.' + host)) && !['script', 'stylesheet'].includes(request.resourceType()))) {
-        return route.abort();
+    async function open(minimal) {
+      const browser = await chromium.launch({ headless: true });
+      options.resources?.push(browser);
+      let navigated = false;
+      try {
+      const page = await browser.newPage();
+      await page.route('**/*', route => {
+        const request = route.request(), url = new URL(request.url());
+        if (['image', 'font', 'media', ...(minimal ? ['stylesheet'] : [])].includes(request.resourceType()) || /\.m3u8|\.ts(?:\?|$)|\/incrReadCount/.test(url.href) ||
+            (!['gdtv.cn', 'itouchtv.cn'].some(host => url.hostname === host || url.hostname.endsWith('.' + host)) && (minimal || !['script', 'stylesheet'].includes(request.resourceType())))) {
+          return route.abort();
+        }
+        return route.continue();
+      });
+      await page.goto('https://www.gdtv.cn/tvChannelDetail/43', { waitUntil: 'domcontentloaded', timeout: 30_000 });
+      navigated = true;
+      await page.waitForFunction(() => window.webpackJsonp && window.webpackJsonp.push !== Array.prototype.push, undefined, { timeout: 20_000 });
+      await page.evaluate(() => {
+        window.webpackJsonp.push([[], { autoepg: (module, exports, require) => { window.__autoEpgRequire = require; } }, [['autoepg']]]);
+      });
+      // The signing module is the same one used by the live page. Anonymous, isolated browser context.
+      await page.waitForFunction(() => Boolean(window.__autoEpgRequire?.m?.[725]), undefined, { timeout: 20_000 });
+      return page;
+      } catch (error) {
+        await browser.close().catch(() => {});
+        // A missing dependency can be caused by resource filtering. A connection
+        // failure cannot, so avoid repeating a slow navigation in that case.
+        if (minimal && navigated) return open(false);
+        throw error;
       }
-      return route.continue();
-    });
-    await page.goto('https://www.gdtv.cn/tvChannelDetail/43', { waitUntil: 'domcontentloaded', timeout: 30_000 });
-    await page.waitForFunction(() => window.webpackJsonp && window.webpackJsonp.push !== Array.prototype.push, undefined, { timeout: 20_000 });
-    await page.evaluate(() => {
-      window.webpackJsonp.push([[], { autoepg: (module, exports, require) => { window.__autoEpgRequire = require; } }, [['autoepg']]]);
-    });
-    // The signing module is the same one used by the live page. Anonymous, isolated browser context.
-    await page.waitForFunction(() => Boolean(window.__autoEpgRequire?.m?.[725]), undefined, { timeout: 20_000 });
-    return page;
+    }
+    return open(true);
   });
 }
 

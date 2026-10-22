@@ -53,7 +53,7 @@ https://github.com/TvWasm/autoEPG/releases/download/2026-09-09/epg.xml
 - 支持 Actions → Update EPG → Run workflow 手动刷新；推送 `main` 后也会测试并刷新，PR 仅测试。
 - 默认按源、频道和日期隔离失败：请求失败、错误格式、异常时间或持续冲突只排除受影响的频道日期，继续发布正常数据。每个请求最多尝试 3 次，最多 4 个并发；某个源连续 3 次发生网络/授权故障后，本轮跳过其后续请求，避免占满抓取时限。合法空节目单单独记录，不当作请求错误。
 - 少于 50 个频道或当日覆盖率低于 90% 只告警，不阻止其他源发布。`manifest.json` 的 `partial`、`failures`、`warnings` 明确记录降级情况。没有有效节目或没有任何与当天相交的有效节目时停止发布，保留上次版本；不会用旧日节目冒充当天。
-- Actions 中仅在整轮无法导出时最多重试 3 次，间隔 30 秒、60 秒，抓取步骤总计限时 12 分钟。有效数据完成校验后先发布，再由独立检查作业汇总错误并报错，触发 GitHub 默认通知；已发布 EPG 保留。
+- Actions 中仅在整轮无法导出时最多重试 3 次，间隔 30 秒、60 秒，抓取步骤总计限时 12 分钟。有效数据完成校验后先发布，再由独立检查作业汇总源告警和详细日志；普通源异常默认不标红，已发布 EPG 保留。
 - 源站调整节目时可能遗留开始、结束时间相等的零时长记录。仅跳过这些没有播出区间的记录，保留有效节目原始时间；日志会提示数量，`manifest.json` 的 `discardedProgrammes` 记录频道、日期、源节目 ID、标题、时间和原因。清理后的数据仍需通过覆盖率及冲突检查。
 
 发布时先检查所有文件的校验和，再将新附件上传到临时名称；上传成功后替换公开名称，最后更新版本状态。替换失败会尝试恢复旧名称，原文件在完成切换前保留。GitHub 不支持多个附件原子切换，重命名期间可能有短暂下载间隙，客户端可重试。临时附件在成功后清理。新版本在文件上传完成前保持草稿状态。
@@ -94,7 +94,7 @@ https://your-stream-provider.example/cctv1.m3u8
 
 ## 免费额度
 
-本仓库是公开仓库，使用标准 `ubuntu-latest` 运行器，**Actions 运行时间免费**。私有仓库的 GitHub Free（包括免费组织）每月包含 **2,000 分钟**及 **500 MB Actions 构件存储**。Larger runners 即使在公开仓库也收费。本项目不使用 Larger runners 或依赖缓存，只保存小型运行报告构件 7 天，用于发布后的异常检查。[官方计费说明](https://docs.github.com/en/billing/concepts/product-billing/github-actions)
+本仓库是公开仓库，使用标准 `ubuntu-latest` 运行器，**Actions 运行时间免费**。私有仓库的 GitHub Free（包括免费组织）每月包含 **2,000 分钟**及 **500 MB Actions 构件存储**。Larger runners 即使在公开仓库也收费。本项目不使用 Larger runners 或依赖缓存，只保存小型原始运行报告 7 天、可读诊断报告 14 天，用于发布后的异常检查。[官方计费说明](https://docs.github.com/en/billing/concepts/product-billing/github-actions)
 
 Release 附件与 Actions 构件不同。单个 Release 附件需小于 2 GiB，每个 Release 最多 1,000 个附件，官方未限制 Release 总大小和带宽用量。[Release 限额](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases#storage-and-bandwidth-quotas)
 
@@ -108,7 +108,7 @@ Release 附件与 Actions 构件不同。单个 Release 附件需小于 2 GiB，
 
 ```sh
 npm ci
-npx playwright install chromium
+npx playwright install --only-shell chromium
 npm test
 npm run generate
 ```
@@ -122,15 +122,19 @@ npm run generate -- --date 2026-09-09 --past-days 0 --future-days 0
 
 指定日期受源站保留范围约束；手动生成的历史数据不会被发布脚本误设为当天 Latest。默认允许部分源失败后继续导出。需要排查源站时可加 `--strict`，恢复整轮失败及覆盖率硬性检查；每日工作流不使用这个选项。其他参数见 `npm run generate -- --help`。
 
-## 发布后 GitHub 默认报错通知
+## 发布后的告警与详细日志
 
-有效数据先发布，`notify` 独立作业随后读取运行报告。有源错误或质量告警时，该作业把来源、频道、日期和原因写入运行摘要，并以失败状态结束，触发 GitHub 默认工作流通知。已发布的 EPG 不会回滚；整轮工作流标红时，请同时查看 `publish` 作业和 Release 的发布结果。
+默认区分“已发布但部分源异常”和“真正失败”：
 
-无需配置发信账号、密码或额外 Secrets。邮件接收地址与发送条件沿用你的 [GitHub Actions 通知设置](https://docs.github.com/en/subscriptions-and-notifications/how-tos/managing-github-actions-notifications)，可选择只接收失败通知。GitHub 邮件链接到运行记录，异常明细在运行摘要和报告构件中。
+- 发布成功，只有省台接口失败、超时、熔断或质量告警：作业通过，以黄色 Warning 提示，不再为这些问题触发 GitHub 默认失败邮件。
+- 测试、生成、发布失败，或运行报告缺失、损坏：检查作业仍失败，沿用 GitHub 默认报错通知。
+- 想恢复“部分源异常也发失败邮件”，可在仓库 Actions Variables 设置 `EPG_STRICT_SOURCE_ALERTS=true`。默认不设置。
 
-正常无错误、无告警时检查通过。长期未接通频道和合法未公布的未来节目不作为错误；隔离的异常区间会告警。检查也覆盖生成失败、发布失败、测试失败和报告缺失，无法确认发布结果时明确标为“未确认”。
+查看详情：进入 Actions 对应运行 → `Publication report and source warnings` 作业。运行摘要汇总全部异常来源；控制台保留详细文本；运行页 Artifacts 的 `epg-diagnostics` 构件包含 `report.html`（下载解压后浏览器打开）、`report.txt`、`report.json`，保留 14 天。可读报告包含全部错误记录，不受摘要 100 项明细限制。
 
-`run-report.json` 作为 Actions 构件保留 7 天，源错误同时记录到 Release 的 `manifest.json`。
+每个源分别列出实际错误记录数、熔断跳过数、涉及频道和日期、接口、原始错误与排查建议。报告明确标注是否发布成功；熔断跳过不等于每条都再次请求失败。报告不宣称网络访问问题已修复。
+
+原始 `epg-run-report` 构件继续保留 7 天；源错误仍记录在 Release 的 `manifest.json`。无需配置发信账号、密码或额外 Secrets。
 
 ## 数据来源与验证
 
@@ -170,7 +174,7 @@ CCTV4 欧洲版、美洲版使用各自直播页实际调用的公开 JSON 接�
 
 ### 收到 Run failed 邮件时
 
-先查看 Actions 的作业结果：`test` 和 `publish` 成功、`Source errors after EPG publication` 失败，表示正常 EPG 已发布，但有部分源异常；失败通知是发布后的检查触发的。具体来源、HTTP 状态及网络错误原因在该作业摘要和 `epg-run-report` 构件中。GitHub 运行器与本地网络不同，本地成功不保证线上可达。不要用关闭错误检查来掩盖缺失频道。
+先查看 Actions 的作业结果和 `epg-diagnostics` 报告。默认普通源异常已降为告警；测试、生成、发布或报告读取失败仍会触发失败邮件。旧版本运行、或设置了 `EPG_STRICT_SOURCE_ALERTS=true` 的运行，可能因为源异常而标红。GitHub 运行器与本地网络不同，本地成功不保证线上可达。
 
 ### 省台接口在 GitHub 运行器上持续超时或拒绝访问
 

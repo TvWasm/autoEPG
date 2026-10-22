@@ -8,9 +8,10 @@
     "node": ">=22"
   },
   "scripts": {
+    "benchmark:browsers": "node scripts/benchmark-browsers.mjs",
     "generate": "node src/cli.js",
     "test": "node --test",
-    "check": "node --check src/cli.js && node --check src/cctv.js && node --check src/official.js && node --check src/provincial.js && node --check src/channels.js && node --check src/logos.js && node --check src/epg.js && node --check src/source.js && node --check src/releases.js && node --check src/publish.js && node --check src/diagnostics.js && node --check src/notification.js && node --check src/notify.js"
+    "check": "node --check src/cli.js && node --check src/cctv.js && node --check src/official.js && node --check src/provincial.js && node --check src/channels.js && node --check src/logos.js && node --check src/epg.js && node --check src/source.js && node --check src/releases.js && node --check src/publish.js && node --check src/diagnostics.js && node --check src/report.js && node --check src/notification.js && node --check src/notify.js"
   },
   "dependencies": {
     "playwright": "1.64.1",

@@ -45,7 +45,7 @@ test('Ningxia and Xinjiang request their own official website context', async ()
   } });
 });
 
-test('Yunnan browser network failures fall back to the same official API and retain validation', async () => {
+test('Yunnan HTTP avoids browser startup, retains validation and preserves both failures', async () => {
   const fixture = JSON.parse(await readFile(new URL('./fixtures/provincial/yntv-dushi.json', import.meta.url), 'utf8'));
   let attempts = 0;
   const options = { yntvPage: { evaluate: async () => { throw new TypeError('Failed to fetch'); } },
@@ -58,6 +58,13 @@ test('Yunnan browser network failures fall back to the same official API and ret
   const rows = await yntvProgrammes('yunnandushi', '2026-10-22', options);
   assert(rows.length > 10);
   assert.equal(attempts, 1);
+  let browserAttempts = 0;
+  const fallback = await yntvProgrammes('yunnandushi', '2026-10-22', {
+    delay: async () => {}, fetchImpl: async () => new Response('', { status: 403 }),
+    yntvPage: { evaluate: async () => { browserAttempts++; return fixture; } },
+  });
+  assert.equal(fallback.length, rows.length);
+  assert.equal(browserAttempts, 1);
   await assert.rejects(yntvProgrammes('yunnandushi', '2026-10-22', {
     ...options, fetchImpl: async () => Response.json({ lists: [], streamer: 'wrong channel' }),
   }), /Invalid YNTV/);

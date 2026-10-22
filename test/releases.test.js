@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { ASSETS, releasePolicy, upsertRelease, publishDirectory, deleteAllReleases } from '../src/releases.js';
 import { collect, writeArtifacts } from '../src/epg.js';
-import { needsNotification, notificationSummary } from '../src/notification.js';
+import { needsNotification, notificationSummary, notificationLevel } from '../src/notification.js';
 
 class FakeGitHub {
   repository = 'example/epg';
@@ -186,7 +186,7 @@ test('rebuild snapshots every page before deleting releases and only their assoc
   assert(!calls.some(c => c.path.includes('/heads/')));
 });
 
-test('partial EPG is published before notification and failed status checks retain the successful release', async () => {
+test('partial EPG is published before source warnings and detailed diagnostics', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'autoepg-partial-publish-status-'));
   try {
     const dataset = await collect({
@@ -204,6 +204,7 @@ test('partial EPG is published before notification and failed status checks reta
     const report = { referenceDate: options.today, generation: { status: 'partial' }, publication: { status: 'succeeded' },
       failures: dataset.manifest.failures, warnings: dataset.manifest.warnings };
     assert.equal(needsNotification(report), true);
+    assert.equal(notificationLevel(report), 'warning');
     assert.match(notificationSummary(report), /发布完成/);
     assert.equal(api.releases[0].draft, false);
     assert.equal(api.latest, options.today);

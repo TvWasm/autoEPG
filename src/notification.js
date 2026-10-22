@@ -31,6 +31,14 @@ export function needsNotification(report) {
   return report.failures.length > 0 || report.warnings.length > 0 || report.publication.status !== 'succeeded';
 }
 
+export function notificationLevel(report, { strict = false } = {}) {
+  const fatalPhases = ['test', 'generation', 'publication', 'publication-report', 'job', 'report'];
+  if (report.publication.status !== 'succeeded' || !['complete', 'partial'].includes(report.generation.status) ||
+      report.warnings.some(w => w.code === 'missing-run-report') ||
+      report.failures.some(f => fatalPhases.includes(f.phase))) return 'error';
+  return needsNotification(report) ? (strict ? 'error' : 'warning') : 'success';
+}
+
 const safe = value => errorMessage(String(value ?? '')).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
 export function notificationSummary(report) {
@@ -40,7 +48,7 @@ export function notificationSummary(report) {
     `生成结果：${safe(report.generation.status)}`,
     `失败/跳过请求：${report.failures.length}；告警：${report.warnings.length}`, ''];
   if (report.publication.status === 'succeeded' && needsNotification(report)) {
-    lines.push('正常数据已发布。以下异常使后续检查作业失败，以触发 GitHub 默认报错通知；已发布 EPG 保留。', '');
+    lines.push('正常数据已发布，已发布 EPG 保留。普通源异常默认只告警，不将工作流标记为失败；完整明细见 epg-diagnostics 构件中的 report.html、report.txt 和 report.json。', '');
   }
   // List every failed provider before the bounded detail list: repeated skipped
   // dates from one outage must not hide the causes of later providers.
@@ -58,7 +66,7 @@ export function notificationSummary(report) {
     const text = `告警：${warning.message}${warning.channels?.length ? '；涉及频道：' + warning.channels.map(c => c.name ?? c.id).join('、') : ''}`;
     lines.push(...safe(text).split(/\r?\n/).map(line => '    ' + line), '');
   }
-  if (report.failures.length > 100) lines.push('其余明细见 epg-run-report 构件。', '');
-  lines.push('完整运行报告作为 epg-run-report 构件保留 7 天。', '');
+  if (report.failures.length > 100) lines.push('其余明细见 epg-diagnostics 构件，完整报告不截断。', '');
+  lines.push('可读诊断报告作为 epg-diagnostics 构件保留 14 天。原始 epg-run-report 构件保留 7 天。', '');
   return lines.join('\n');
 }
