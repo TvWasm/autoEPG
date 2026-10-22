@@ -42,6 +42,14 @@ export function notificationSummary(report) {
   if (report.publication.status === 'succeeded' && needsNotification(report)) {
     lines.push('正常数据已发布。以下异常使后续检查作业失败，以触发 GitHub 默认报错通知；已发布 EPG 保留。', '');
   }
+  // List every failed provider before the bounded detail list: repeated skipped
+  // dates from one outage must not hide the causes of later providers.
+  for (const [source, failures] of Map.groupBy(report.failures, f => f.sourceName ?? f.source)) {
+    const skipped = failures.filter(f => f.phase === 'skipped').length;
+    const example = failures.find(f => f.phase !== 'skipped') ?? failures[0];
+    const text = `${source}：${failures.length - skipped} 项错误，${skipped} 项跳过；原因：${example.message}`;
+    lines.push(...safe(text).split(/\r?\n/).map(line => '    ' + line), '');
+  }
   for (const failure of report.failures.slice(0, 100)) {
     const text = `[${failure.phase}] ${failure.sourceName ?? failure.source}${failure.channelName ? ' / ' + failure.channelName : ''}${failure.date ? ' / ' + failure.date : ''}: ${failure.message}`;
     lines.push(...safe(text).split(/\r?\n/).map(line => '    ' + line), '');

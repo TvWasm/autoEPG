@@ -41,6 +41,15 @@ test('summary redacts URL secrets and renders untrusted source text as inert det
   assert(!summary.includes('\n::error::injected'));
 });
 
+test('source overview shows later providers even when one outage fills the detail limit', () => {
+  const value = report();
+  value.failures = Array.from({ length: 105 }, () => ({ source: 'first', phase: 'skipped', message: 'circuit open' }));
+  value.failures.push({ source: 'last', phase: 'fetch', message: 'HTTP 403 (server: edge)' });
+  const summary = notificationSummary(value);
+  assert.match(summary, /last.*HTTP 403/);
+  assert.match(summary, /105 项跳过/);
+});
+
 test('CLI returns failure for partial or missing reports, success for healthy publication, without mail setup', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'epg-notification-'));
   try {

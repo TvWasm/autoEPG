@@ -23,3 +23,5 @@
 2026-10-22 补充：宁夏官网公共、文旅频道页面调用 `https://api.ningxiahuangheyun.com/?mod=get_appdata&appid=nxtv-tv`，`menu[].ename` 分别为 `nxws`、`nxgg`、`nxwl`。已验证三套频道当天共 97 档节目，保留官方起止秒数，并核对 `stime/otime` 日期文本；历史、未来日期不套用当天表。宁夏卫视保留原 ID，公共及文旅作为官网补充频道加入目录，目录从 225 增至 227。
 
 2026-10-22 湖北补充：读取官方网页 manifest 与公共配置分块，仅提取匿名网页请求头，不执行下载脚本、不使用用户凭据。`/api/cj-cloud/play/null/channel?operator=cucc` 返回频道名称与 `CHANNELCODE`；`/api/cj-cloud/play/null/show?channelCode=...&date=YYYY-MM-DD` 返回完整起止时间。六套频道当天共 197 档节目；已核验 10 月 21 日至 25 日有真实日期数据。湖北卫视当天《转播中央台新闻联播》官方开始时间为 19:00:04，原样保留，不强行改成整点。
+
+GitHub Actions 在线差异（2026-10-22）：97fcb5d、562a0ff 两轮均测试通过且发布 7 个日期版本；通知作业因抓取异常而失败。Ubuntu 运行器在江苏、青海等来源出现连接失败，宁夏、新疆返回 HTTP 403，云南浏览器请求失败；本机同日可取得这些来源，不能将本机覆盖数量当作线上覆盖数量。请求兼容性修复增加公开浏览器 User-Agent、宁夏/新疆官网上下文头，Actions 使用 IPv4 优先；错误报告保留嵌套网络错误码及 HTTP Server 元数据，以在线复测结果判断是否有效，不能将这些改动视为已解决地域限制。

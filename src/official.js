@@ -1,5 +1,14 @@
 import { setTimeout as sleep } from 'node:timers/promises';
 import { createHash, randomUUID } from 'node:crypto';
+import { errorMessage } from './diagnostics.js';
+
+const WEB_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36';
+
+function connectionReason(error) {
+  const causes = [error.cause, ...(error.cause?.errors ?? [])].filter(Boolean);
+  const details = [...new Set(causes.map(e => e.code ?? e.message).filter(Boolean))];
+  return details.length ? `${error.message} (${details.join(', ')})` : error.message;
+}
 
 function cached(key, options, work) {
   if (!options.cache) return work();
@@ -10,11 +19,18 @@ function cached(key, options, work) {
 export async function officialRequest(url, { fetchImpl = fetch, delay = sleep, timeoutMs = 20_000, method, headers, body } = {}) {
   for (let attempt = 0; ; attempt++) {
     try {
-      const response = await fetchImpl(url, { method, headers, body, signal: AbortSignal.timeout(timeoutMs) });
-      if (!response.ok) { await response.body?.cancel(); throw new Error(`HTTP ${response.status}`); }
+      const response = await fetchImpl(url, { method,
+        headers: { 'User-Agent': WEB_USER_AGENT, Accept: 'application/json, text/plain, */*', ...headers },
+        body, signal: AbortSignal.timeout(timeoutMs) });
+      if (!response.ok) {
+        // Only record transport metadata, never an HTML challenge or echoed credentials.
+        const server = response.headers?.get('server');
+        await response.body?.cancel();
+        throw new Error(`HTTP ${response.status}${server ? ` (server: ${server})` : ''}`);
+      }
       return await response.text();
     } catch (error) {
-      if (attempt === 2) throw new Error(`${url}: ${error.message}`, { cause: error });
+      if (attempt === 2) throw new Error(`${errorMessage(url)}: ${errorMessage(connectionReason(error))}`, { cause: error });
       await delay(1000 * 2 ** attempt);
     }
   }
@@ -277,7 +293,9 @@ export async function xjtvsProgrammes(channelId, date, options = {}) {
   if (!/^\d+$/.test(channelId)) throw new Error('Invalid XJTV channel ID');
   const url = new URL('https://slstapi.xjtvs.com.cn/api/TVLiveV100/TVGuideList');
   url.search = new URLSearchParams({ tvChannelId: channelId, date: date + ' 00:00:00', json: 'true' });
-  const body = JSON.parse(await officialRequest(url.href, options));
+  const body = JSON.parse(await officialRequest(url.href, { ...options,
+    headers: { Referer: 'https://www.xjtvs.com.cn/', Origin: 'https://www.xjtvs.com.cn', ...options.headers },
+  }));
   if (body.success !== true || !Array.isArray(body.data)) throw new Error('Invalid XJTV schedule response');
   return body.data.map(row => {
     if (row.TVDate !== date) throw new Error('XJTV response date mismatch');
@@ -481,7 +499,9 @@ export async function cztvProgrammes(channelId, date, options = {}) {
 export async function nxtvProgrammes(channelId, date, options = {}) {
   if (!['nxws', 'nxgg', 'nxwl'].includes(channelId)) throw new Error('Invalid NXTV channel ID');
   const url = 'https://api.ningxiahuangheyun.com/?mod=get_appdata&appid=nxtv-tv';
-  const body = await cached(url, options, async () => JSON.parse(await officialRequest(url, options)));
+  const body = await cached(url, options, async () => JSON.parse(await officialRequest(url, { ...options,
+    headers: { Referer: 'https://www.nxtv.cn/', Origin: 'https://www.nxtv.cn', ...options.headers },
+  })));
   if (body.errcode !== 200 || body.data?.appid !== 'nxtv-tv' || !Array.isArray(body.data.menu)) {
     throw new Error('Invalid NXTV schedule response');
   }

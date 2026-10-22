@@ -18,6 +18,9 @@ on:
 permissions:
   contents: read
 
+env:
+  NODE_OPTIONS: --dns-result-order=ipv4first
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -90,6 +93,7 @@ jobs:
           retention-days: 7
 
   notify:
+    name: Source errors after EPG publication
     needs: [test, publish]
     if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest

@@ -167,3 +167,7 @@ CCTV4 欧洲版、美洲版使用各自直播页实际调用的公开 JSON 接�
 接口返回 Protocol Buffers，`src/yangshipin.proto` 的字段编号来自网站公开前端 schema，使用 protobufjs 解码，不执行远程 JavaScript。接口改版或网络限制可能需要调整适配器。
 
 输出遵循 [XMLTV DTD](https://github.com/XMLTV/xmltv/blob/master/xmltv.dtd)，使用显式 `+0800` 并保留秒级时间。离线测试覆盖真实响应快照、日期边界、XML 转义、去重、重试、并发、覆盖率、按日拆分、校验和、日期版本、Pre-release 晋升、覆盖更新和失败回滚。
+
+### 收到 Run failed 邮件时
+
+先查看 Actions 的作业结果：`test` 和 `publish` 成功、`Source errors after EPG publication` 失败，表示正常 EPG 已发布，但有部分源异常；失败通知是发布后的检查触发的。具体来源、HTTP 状态及网络错误原因在该作业摘要和 `epg-run-report` 构件中。GitHub 运行器与本地网络不同，本地成功不保证线上可达。不要用关闭错误检查来掩盖缺失频道。
