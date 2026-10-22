@@ -12,7 +12,7 @@ export function sourceFailure({ source = 'unknown', sourceName = source, url, ph
 }
 
 export function transportFailure(error) {
-  return /HTTP (?:401|403|429|5\d\d)|fetch failed|timeout|timed out|ECONN|ENOTFOUND|ERR_|Executable doesn't exist|browser.*closed/i.test(errorMessage(error));
+  return /HTTP (?:401|403|429|5\d\d)|fetch failed|failed to fetch|timeout|timed out|ECONN|ENOTFOUND|ERR_|Executable doesn't exist|browser.*closed/i.test(errorMessage(error));
 }
 
 export async function saveRunReport(directory, report) {

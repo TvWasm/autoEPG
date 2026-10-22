@@ -261,19 +261,27 @@ export async function yntvProgrammes(channelId, date, options = {}) {
   const url = 'https://yntv-api.yntv.cn/index/jmd/getJmd?' + new URLSearchParams({ name: channelId, da: date });
   const body = await cached(url, options, async () => {
     if (options.yntvRequest) return options.yntvRequest(url);
-    const page = await yntvBrowser(options);
-    return page.evaluate(async url => {
-      for (let attempt = 0; ; attempt++) {
-        try {
-          const response = await fetch(url, { signal: AbortSignal.timeout(20_000) });
-          if (!response.ok) { await response.body?.cancel(); throw new Error(`YNTV HTTP ${response.status}`); }
-          return await response.json();
-        } catch (error) {
-          if (attempt === 2) throw error;
-          await new Promise(resolve => setTimeout(resolve, 1000 * 2 ** attempt));
+    try {
+      const page = options.yntvPage ?? await yntvBrowser(options);
+      return await page.evaluate(async url => {
+        for (let attempt = 0; ; attempt++) {
+          try {
+            const response = await fetch(url, { signal: AbortSignal.timeout(20_000) });
+            if (!response.ok) { await response.body?.cancel(); throw new Error(`YNTV HTTP ${response.status}`); }
+            return await response.json();
+          } catch (error) {
+            if (attempt === 2) throw error;
+            await new Promise(resolve => setTimeout(resolve, 1000 * 2 ** attempt));
+          }
         }
-      }
-    }, url);
+      }, url);
+    } catch {
+      // A browser CORS/network error does not prove the public API is unreachable
+      // from the runner's HTTP client. Keep the same endpoint and validation.
+      return JSON.parse(await officialRequest(url, { ...options,
+        headers: { Referer: 'https://www.yntv.cn/live.html', Origin: 'https://www.yntv.cn', ...options.headers },
+      }));
+    }
   });
   if (!Array.isArray(body.lists) || body.streamer !== `https://tvlive.yntv.cn/live/${channelId}/playlist_dvr_range-`) {
     throw new Error('Invalid YNTV schedule response');
