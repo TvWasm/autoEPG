@@ -12,6 +12,8 @@ try {
   await saveRunReport(directory, report);
   const count = await publishDirectory(api, directory, process.env.GITHUB_SHA ?? 'main', {
     rebuild: process.env.REBUILD_RELEASES === 'true',
+    allowPartialDates: true,
+    onWarning: warning => { report.warnings.push(warning); console.warn(warning.date + ': ' + warning.message); },
   });
   published = true;
   report.publication = { status: 'succeeded', releases: count, finishedAt: new Date().toISOString() };

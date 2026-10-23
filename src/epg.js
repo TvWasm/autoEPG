@@ -79,6 +79,8 @@ export async function collect(source, {
   const firstFetch = dateKey(range.start - DAY);
   const tasks = channels.flatMap(channel => channel.dates
     .filter(date => date >= firstFetch && date <= last).map(date => ({ channel, date })));
+  // Fetch today's channels before lookback/future dates can open a circuit.
+  tasks.sort((a, b) => (a.date === today ? 0 : 1) - (b.date === today ? 0 : 1));
   const failures = [...(source.failures ?? [])], batches = new Map(), scheduleRechecks = [], brokenSources = new Map();
   const failed = message => Object.assign(new Error(message), { failures, warnings });
   const describe = (channel, date) => source.describeSource?.(channel, date) ??
@@ -276,6 +278,12 @@ export async function writeArtifacts(directory, dataset) {
       groups.push({ id: group.id, name: group.name, channelIds: members.map(c => c.id), feeds });
     }
     files['channels.json'] = Buffer.from(JSON.stringify(dataset.channels, null, 2) + '\n');
+    const fallbackDates = new Map((dataset.manifest.fallbackUsage ?? []).map(u => [u.channel + '/' + u.date, u]));
+    files['snapshot.json'] = Buffer.from(JSON.stringify({ schemaVersion: 1, date,
+      generatedAt: dataset.manifest.generatedAt, channels: dataset.channels,
+      programmes: programmes.map(p => ({ ...p,
+        observedAt: fallbackDates.get(p.channel + '/' + dateKey(p.start))?.generatedAt?.[0] ?? dataset.manifest.generatedAt })),
+      fallbackUsage: dataset.manifest.fallbackUsage ?? [] }) + '\n');
     if (dataset.manifest.provincialCoverage) {
       files['provincial-coverage.json'] = Buffer.from(JSON.stringify(dataset.manifest.provincialCoverage, null, 2) + '\n');
     }

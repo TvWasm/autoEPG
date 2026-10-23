@@ -37,13 +37,19 @@ https://github.com/TvWasm/autoEPG/releases/download/2026-09-09/epg.xml
 
 到 9 月 10 日刷新时，`2026-09-10` 转为正式版并设为 Latest，9 月 9 日保留为历史版。源站调整节目后，刷新会**替换同日期版本的附件**，不会再创建按运行次数编号的版本。
 
-版本从早到晚依次发布，并使用日期注解标签（标签时间为节目日期的北京时间零点），使 Release 页面按日期从新到旧排列；Latest 独立指定为当天，未来版本仍为 Pre-release。标签日期表示节目单日期，实际抓取时间见 `manifest.json`。
+先发布今天，再处理其他日期，并使用日期注解标签（标签时间为节目日期的北京时间零点），使 Release 页面按日期从新到旧排列；Latest 独立指定为当天，未来版本仍为 Pre-release。标签日期表示节目单日期，实际抓取时间见 `manifest.json`。
 
 每个日期版本附带 `channels.json`（频道映射）、`manifest.json`（节目数、文件大小、更新时间、数据覆盖情况）和 `SHA256SUMS`（校验和）。每个 XML 独立包含所需频道定义；与该日期相交的跨午夜节目保留真实起止时间，因此边界节目可能出现在相邻两天的文件中。
 
 ## 更新规则
 
-[Update EPG 工作流](https://github.com/TvWasm/autoEPG/actions/workflows/epg.yml) 每天北京时间 **00:00** 运行一次，对应 UTC `0 16 * * *`。GitHub 排队可能延迟，尤其是整点，文件不保证零点整完成发布。
+[Update EPG 工作流](https://github.com/TvWasm/autoEPG/actions/workflows/epg.yml) 每天北京时间 **00:00、04:00、08:00、12:00、16:00、20:00** 尝试刷新。GitHub 排队可能延迟，文件不保证整点完成发布。
+
+发布采用两阶段策略：`Priority Yangshipin and CCTV publication` 不依赖省台测试或浏览器，先运行核心路径测试并发布央视频、央视网今天及已公布的后两天数据；完整测试通过后，再启动省台抓取并增强相同日期版本。省台错误或完整测试失败不阻止核心任务执行。核心任务保留可用的同日省台缓存，避免先发布时丢失已有节目。
+
+每个频道、日期优先使用本轮有效数据；常规央视频道的央视频请求失败、格式错误或返回空表时，尝试央视网同频道接口。再失败则读取本仓库已经发布的同频道同日期数据。兜底下载经过 `SHA256SUMS` 校验和节目时间校验，不能将昨日节目改日期填到今天。`manifest.json` 的 `fallbackUsage` 和可读报告列出兜底频道、日期、原因及原始抓取时间；重新发布缓存不会把旧抓取时间改成当前时间。
+
+每日附带 `snapshot.json` 作为后续运行的兜底输入；首次升级可读取已发布的 XML、频道及清单文件。今天文件通过校验后优先发布，其他日期的校验或上传异常单独告警；今天文件损坏或全部缺少当天有效节目时保留旧发布，不切换成空表。GitHub 本身不可用或所有源及同日缓存都没有数据时，无法凭空生成真实节目单。
 
 - 默认刷新过去 3 天、今天和未来 3 天，以源站实际公布的日期为准。范围之外的已发布历史版本保留。
 - 每日自动抓取包含 `CCTV4(欧)` 和 `CCTV4(美)`，随完整 EPG、央视频道分组及两日/三日订阅一起发布，无需单独运行脚本。
@@ -98,7 +104,7 @@ https://your-stream-provider.example/cctv1.m3u8
 
 Release 附件与 Actions 构件不同。单个 Release 附件需小于 2 GiB，每个 Release 最多 1,000 个附件，官方未限制 Release 总大小和带宽用量。[Release 限额](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases#storage-and-bandwidth-quotas)
 
-若一次运行的两个作业合计 5 分钟，每天一次、30 天约 150 分钟；实际以 Actions 耗时为准。公开仓库不消耗私有仓库的 2,000 分钟配额。
+每天最多 6 次定时运行，每轮包含独立核心发布、完整测试、省台增强发布及报告，具体用量以 Actions 耗时为准。公开仓库不消耗私有仓库的 2,000 分钟配额。
 
 公开仓库 60 天无仓库活动时，定时工作流可能自动停用；不要假设自动运行或发布 Release 必然避免停用。若订阅长期未更新，请查看 Actions 并重新启用工作流。[官方 schedule 说明](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 

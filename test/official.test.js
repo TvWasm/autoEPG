@@ -129,7 +129,7 @@ test('eight real official guides join every release variant with sources and mis
     assert.equal(report.unavailable.length, 1);
     assert.equal(report.sources.length, 8);
     await assert.rejects(publishDirectory({ call: async () => { throw new Error('reached publisher'); } },
-      directory, 'commit', { today: '2026-10-22' }), /reached publisher/);
+      directory, 'commit', { currentDate: () => '2026-10-22' }), /reached publisher/);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
 

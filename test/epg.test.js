@@ -133,7 +133,7 @@ test('fetches advertised dates with one boundary day and keeps cross-midnight pr
       ];
     },
   }, options);
-  assert.deepEqual(requested, ['2026-09-08', today]);
+  assert.deepEqual(requested, [today, '2026-09-08']);
   assert.equal(data.manifest.todayChannelCoverage, 1);
   assert.equal(data.programmes.length, 2);
   assert.equal(data.programmes[0].title, 'Boundary');

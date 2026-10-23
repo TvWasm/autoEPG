@@ -145,7 +145,7 @@ test('publishes and replaces the two-day and three-day subscription assets', asy
   assert.equal(api.releases[0].assets.find(a => a.name === 'epg3.xml').size, 18);
 });
 
-test('publishes in calendar order with dated annotated tags and refuses stale/corrupt input', async () => {
+test('publishes today first with dated annotated tags and refuses stale/corrupt input', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'autoepg-release-test-'));
   try {
     const dates = ['2026-09-08', '2026-09-09', '2026-09-10'];
@@ -158,7 +158,7 @@ test('publishes in calendar order with dated annotated tags and refuses stale/co
     const api = new FakeGitHub();
     const config = { currentDate: () => options.today };
     assert.equal(await publishDirectory(api, dir, 'abc', config), 3);
-    assert.deepEqual(api.published, ['2026-09-08', '2026-09-09', '2026-09-10']);
+    assert.deepEqual(api.published, ['2026-09-09', '2026-09-08', '2026-09-10']);
     for (const date of dates) {
       const tag = api.tagObjects.get(api.tags.get(date).object.sha);
       assert.equal(tag.tagger.date, `${date}T00:00:00+08:00`);
@@ -168,6 +168,33 @@ test('publishes in calendar order with dated annotated tags and refuses stale/co
     await writeFile(join(dir, options.today, 'epg.xml'), 'corrupt');
     await assert.rejects(publishDirectory(api, dir, 'abc', { ...config, rebuild: true }), /Checksum/);
     assert.equal(api.published.length, 3);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('future-date validation and upload failures do not prevent a usable current-day release in recovery mode', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'autoepg-date-recovery-'));
+  try {
+    const dates = ['2026-09-09', '2026-09-10'];
+    const dataset = await collect({ channels: async () => [{ id: 'cctv1', pid: '1', name: 'CCTV1', groupId: 'cctv', dates }],
+      programmes: async (_channel, date) => [{ name: date, st: Date.parse(date + 'T08:00:00+08:00') / 1000,
+        et: Date.parse(date + 'T09:00:00+08:00') / 1000 }],
+    }, { today: options.today, pastDays: 0, futureDays: 1, minChannels: 1, delayMs: 0 });
+    const index = await writeArtifacts(dir, dataset);
+    const warnings = [], api = new FakeGitHub();
+    api.failUploadAt = index.releases.find(r => r.date === options.today).assets.length + 1;
+    const config = { currentDate: () => options.today, allowPartialDates: true, onWarning: w => warnings.push(w) };
+    assert.equal(await publishDirectory(api, dir, 'commit', config), 1);
+    assert.equal(api.latest, options.today);
+    assert(warnings.some(w => w.code === 'release-date-publication' && w.date === dates[1]));
+    await writeFile(join(dir, dates[1], 'epg.xml'), 'broken future file');
+    const next = new FakeGitHub();
+    assert.equal(await publishDirectory(next, dir, 'commit', config), 1);
+    assert.equal(next.latest, options.today);
+    assert(warnings.some(w => w.code === 'release-date-validation'));
+    await writeFile(join(dir, options.today, 'epg.xml'), 'broken today file');
+    const untouched = new FakeGitHub();
+    await assert.rejects(publishDirectory(untouched, dir, 'commit', config), /Checksum/);
+    assert.equal(untouched.releases.length, 0);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 

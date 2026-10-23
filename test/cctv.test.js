@@ -57,3 +57,19 @@ test('unpublished CCTV dates are empty, malformed responses fail, HTTP errors re
   });
   assert.equal(calls, 2);
 });
+
+test('domestic CCTV falls back to the official CCTV API when Yangshipin is empty, invalid or offline', async () => {
+  const date = '2026-10-23', st = Date.parse(date + 'T08:00:00+08:00') / 1000;
+  const channel = { id: 'cctv1', pid: '600001859', name: 'CCTV1' };
+  for (const work of [async () => [], async () => [{ name: '坏时间', st: 0, et: 1 }], async () => { throw new Error('HTTP 503'); }]) {
+    const source = new EpgSources({ dates: [date], allowPartial: true, yangshipin: { programmes: work },
+      retries: 1, fetchImpl: async url => {
+        assert.equal(new URL(url).searchParams.get('c'), 'cctv1');
+        assert.equal(new URL(url).searchParams.get('d'), '20261023');
+        return Response.json({ data: { cctv1: { channelName: 'CCTV1', list: [{ title: '央视网当日节目', startTime: st, endTime: st + 3600 }] } } });
+      } });
+    const rows = await source.programmes(channel, date);
+    assert.equal(rows[0].name, '央视网当日节目');
+    assert(source.warnings.some(w => w.code === 'official-alternate'));
+  }
+});

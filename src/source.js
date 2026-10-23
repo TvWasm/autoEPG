@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { channelProfile, groupedChannels } from './channels.js';
 import { projectLogo, projectLogoBytes } from './logos.js';
+import { readFileSync } from 'node:fs';
 
 export const HOME = 'https://www.yangshipin.cn/tv/home';
 const API = 'https://capi.yangshipin.cn/api/';
@@ -145,7 +146,12 @@ export class Yangshipin {
     if (!tab?.feedId) throw new Error('TV navigation missing; upstream schema may have changed');
     const page = await request(`${API}oms/pc/page/${encodeURIComponent(tab.feedId)}`, 'PageResponse', this.options);
     const channels = extractChannels(page);
-    await verifyPngLogos(channels, this.options);
+    try { await verifyPngLogos(channels, this.options); }
+    catch (error) {
+      if (!this.options.allowLogoFailure) throw error;
+      this.options.onWarning?.({ code: 'logo-unavailable', message: error.message });
+      for (const channel of channels) if (!projectLogoBytes(channel.logo)) channel.logo = '';
+    }
     return channels;
   }
   async programmes(channel, date) {
@@ -153,4 +159,14 @@ export class Yangshipin {
       'ProgrammeResponse', this.options);
     return response.dataList;
   }
+}
+
+// Versioned channel identities survive navigation/schema outages. These are
+// only identifiers; all programme times still come from the official APIs.
+export function knownYangshipinChannels(dates) {
+  const profiles = JSON.parse(readFileSync(new URL('./channel-profiles.json', import.meta.url), 'utf8'));
+  return groupedChannels(Object.entries(profiles).map(([pid, profile]) => ({
+    ...channelProfile(pid, profile.name, profile.order < 40 ? 'yangshi' : 'weishi'),
+    pid, dates: [...dates], logo: projectLogo(profile.id) ?? '',
+  })));
 }

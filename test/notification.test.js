@@ -87,6 +87,30 @@ test('infrastructure failures, unknown generation and missing reports remain fat
   assert.equal(notificationLevel(value), 'error');
 });
 
+test('readable notification retains successful core publication when the later enhancement fails', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'epg-core-notification-'));
+  try {
+    const coreDir = join(directory, 'core');
+    const { mkdir } = await import('node:fs/promises');
+    await mkdir(coreDir);
+    await writeFile(join(coreDir, 'run-report.json'), JSON.stringify(report()));
+    const enhancement = report();
+    enhancement.publication.status = 'failed';
+    enhancement.generation.status = 'failed';
+    enhancement.failures = [{ source: 'provincial', phase: 'generation', message: 'HTTP 503' }];
+    await writeFile(join(directory, 'run-report.json'), JSON.stringify(enhancement));
+    const result = spawnSync(process.execPath, [resolve('src/notify.js'), directory, coreDir], { encoding: 'utf8',
+      env: { ...process.env, EPG_STRICT_SOURCE_ALERTS: 'false', EPG_TEST_RESULT: 'success',
+        EPG_PUBLISH_JOB_RESULT: 'failure', EPG_GENERATION_RESULT: 'failure', EPG_PUBLICATION_RESULT: 'skipped',
+        EPG_CORE_JOB_RESULT: 'success', EPG_CORE_GENERATION_RESULT: 'success', EPG_CORE_PUBLICATION_RESULT: 'success' } });
+    assert.equal(result.status, 0, result.stderr);
+    const written = JSON.parse(await readFile(join(directory, 'diagnostics', 'report.json')));
+    assert.equal(written.publication.status, 'succeeded');
+    assert(written.warnings.some(w => w.code === 'core-publication-retained'));
+    assert(written.failures.some(f => f.phase === 'enhancement' && f.originalPhase === 'generation'));
+  } finally { await rm(directory, { recursive: true, force: true }); }
+});
+
 test('readable reports retain every detail, distinguish skipped requests, redact secrets and escape HTML', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'epg-readable-report-'));
   try {

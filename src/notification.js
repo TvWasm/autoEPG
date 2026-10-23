@@ -10,7 +10,7 @@ export function notificationReport(input, env = process.env) {
   report.publication ??= { status: 'unknown' };
   for (const [key, value] of Object.entries(runContext(env))) if (value) report[key] = value;
   if (!input) report.warnings.push({ code: 'missing-run-report', message: '运行报告缺失，无法确认抓取完整性，请查看 Actions 日志。' });
-  if (failed(env.EPG_TEST_RESULT)) report.failures.push(sourceFailure({ source: 'tests', phase: 'test', error: '自动测试未通过，未执行发布。' }));
+  if (failed(env.EPG_TEST_RESULT)) report.failures.push(sourceFailure({ source: 'tests', phase: 'test', error: '完整测试未通过；省台增强发布可能被跳过，央视频/央视网独立发布结果见本报告。' }));
   if (failed(env.EPG_GENERATION_RESULT)) {
     report.generation.status = 'failed';
     if (!report.failures.some(f => f.phase === 'generation')) report.failures.push(sourceFailure({ source: 'generation', phase: 'generation', error: '抓取/导出作业失败或超时，请查看运行日志。' }));

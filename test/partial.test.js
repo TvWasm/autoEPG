@@ -75,7 +75,7 @@ test('a broken provincial adapter does not stop other adapters or remaining work
 
 test('Yangshipin discovery failure still discovers official provincial and CCTV4 channels', async () => {
   const provincial = { failures: [], warnings: [], report: { targetCount: 1 },
-    channels: async existing => { assert.equal(existing.length, 0); return [channel('healthy')]; } };
+    channels: async existing => { assert(existing.some(c => c.id === 'cctv1')); return [channel('healthy')]; } };
   const source = new EpgSources({ dates: [date], allowPartial: true, provincial,
     yangshipin: { channels: async () => { throw new Error('timeout'); } } });
   const channels = await source.channels();

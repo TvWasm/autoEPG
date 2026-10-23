@@ -1,8 +1,9 @@
 import { setTimeout as sleep } from 'node:timers/promises';
-import { Yangshipin } from './source.js';
+import { Yangshipin, knownYangshipinChannels } from './source.js';
 import { groupedChannels } from './channels.js';
 import { projectLogo } from './logos.js';
 import { sourceFailure } from './diagnostics.js';
+import { normalize, deduplicate } from './epg.js';
 
 export const CCTV_CHANNELS = [
   { id: 'cctv4europe', pid: 'cctveurope', name: 'CCTV4(欧)',
@@ -37,9 +38,10 @@ export async function cctvProgrammes(channel, date, {
 }
 
 export class EpgSources {
-  constructor({ dates, yangshipin = new Yangshipin(), provincial = null, allowPartial = false, ...options }) {
+  constructor({ dates, yangshipin, provincial = null, allowPartial = false, ...options }) {
     this.dates = dates;
-    this.yangshipin = yangshipin;
+    this.yangshipin = yangshipin ?? new Yangshipin({ allowLogoFailure: allowPartial,
+      onWarning: warning => this.warnings.push(warning) });
     this.options = options;
     this.provincial = provincial;
     this.allowPartial = allowPartial;
@@ -54,6 +56,8 @@ export class EpgSources {
     catch (error) {
       this.failures.push(sourceFailure({ source: 'yangshipin', sourceName: '央视频', phase: 'discovery', error }));
       if (!this.allowPartial) throw error;
+      channels = knownYangshipinChannels(this.dates);
+      this.warnings.push({ code: 'discovery-fallback', message: '央视频频道发现失败，使用版本内频道标识继续请求官方节目单。' });
     }
     if (this.provincial) {
       try { extra = await this.provincial.channels(channels); }
@@ -72,13 +76,27 @@ export class EpgSources {
       legacyIds: [], logo: projectLogo('cctv4'), dates: [...this.dates],
     }))]);
   }
-  programmes(channel, date) {
+  async programmes(channel, date) {
     if (channel.source === 'provincial') {
       if (this.provincial.hasSchedule(channel, date) || channel.groupId === 'provincial') return this.provincial.programmes(channel, date);
       return this.yangshipin.programmes(channel, date);
     }
-    return channel.source === 'cctv'
-      ? cctvProgrammes(channel, date, this.options) : this.yangshipin.programmes(channel, date);
+    if (channel.source === 'cctv') return cctvProgrammes(channel, date, this.options);
+    if (!this.allowPartial || !/^cctv(?:[1-9]|1[0-7]|5plus)$/.test(channel.id)) return this.yangshipin.programmes(channel, date);
+    let primaryError;
+    try {
+      const rows = await this.yangshipin.programmes(channel, date);
+      if (deduplicate(normalize(rows, channel, date)).length) return rows;
+      primaryError = new Error('Empty Yangshipin schedule');
+    } catch (error) { primaryError = error; }
+    try {
+      const alternate = { ...channel, pid: channel.id, url: `https://tv.cctv.com/live/${channel.id}/` };
+      const rows = await cctvProgrammes(alternate, date, this.options);
+      deduplicate(normalize(rows, channel, date));
+      if (rows.length) this.warnings.push({ code: 'official-alternate', channel: channel.id, date,
+        message: `${channel.name}/${date} 央视频不可用，已改用央视网同频道当日数据：${primaryError.message}` });
+      return rows;
+    } catch (error) { throw new Error(`Yangshipin: ${primaryError.message}; CCTV: ${error.message}`); }
   }
   async refreshProgrammes(channel, date) {
     if (channel.source !== 'provincial') return this.programmes(channel, date);

@@ -4,7 +4,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { dateKey, windowFor } from './epg.js';
 
 export const ASSETS = ['epg.xml', 'channels.json', 'manifest.json', 'SHA256SUMS'];
-const OPTIONAL_ASSETS = ['epg2.xml', 'epg3.xml', 'groups.json',
+const OPTIONAL_ASSETS = ['snapshot.json', 'epg2.xml', 'epg3.xml', 'groups.json',
   'epg-cctv.xml', 'epg2-cctv.xml', 'epg3-cctv.xml',
   'epg-weishi.xml', 'epg2-weishi.xml', 'epg3-weishi.xml',
   'epg-provincial.xml', 'epg2-provincial.xml', 'epg3-provincial.xml', 'provincial-coverage.json'];
@@ -131,41 +131,54 @@ export async function upsertRelease(api, { date, today, commit, body, files }) {
 
 export async function publishDirectory(api, directory, commit, {
   currentDate = () => dateKey(Date.now() / 1000), today = currentDate(), rebuild = false,
+  allowPartialDates = false, onWarning = () => {},
 } = {}) {
   const index = JSON.parse(await readFile(join(directory, 'releases.json'), 'utf8'));
   if (index.referenceDate !== today) throw new Error('Scrape date is not today; regenerate before publishing');
   if (!index.releases.some(r => r.date === today)) throw new Error('Current-day EPG is missing');
-  // Validate all local files before mutating any releases.
+  // Today's validation is mandatory. Recovery mode isolates other dates.
   const prepared = [];
   for (const entry of index.releases) {
-    windowFor(entry.date, 0, 0);
-    const names = assetNames(entry.assets ?? ASSETS);
-    const files = Object.fromEntries(await Promise.all(names.map(async name =>
-      [name, await readFile(join(directory, entry.date, name))])));
-    const expected = names.filter(name => name !== 'SHA256SUMS').map(name =>
-      `${createHash('sha256').update(files[name]).digest('hex')}  ${name}\n`).join('');
-    if (files.SHA256SUMS.toString() !== expected) throw new Error(`Checksum mismatch: ${entry.date}`);
-    const m = JSON.parse(files['manifest.json']);
-    if (m.date !== entry.date) throw new Error(`Manifest date mismatch: ${entry.date}`);
-    const base = `https://github.com/${api.repository}/releases`;
-    const variants = (m.variants ?? []).map(v => `[${v.file}](${base}/download/${entry.date}/${v.file})：${v.from} 至 ${v.to}（${v.bytes} 字节）`).join('\n\n');
-    const body = `央视频节目单 · ${entry.date}（北京时间）\n\n` +
-      `更新：${index.generatedAt}；频道：${m.channelCount}；节目：${m.programmeCount}；XML：${m.xmlBytes} 字节。\n\n` +
-      `epg.xml 为当日数据；如含 epg2.xml、epg3.xml，则分别从版本日期起覆盖两天、三天。跨午夜节目保留真实起止时间。每日北京时间 00:00 刷新相同日期版本。\n\n${variants}\n\n` +
-      `[本日 XML](${base}/download/${entry.date}/epg.xml) · [当天固定订阅](${base}/latest/download/epg.xml)`;
-    prepared.push({ date: entry.date, today, commit, files, body });
+    try {
+      windowFor(entry.date, 0, 0);
+      const names = assetNames(entry.assets ?? ASSETS);
+      const files = Object.fromEntries(await Promise.all(names.map(async name =>
+        [name, await readFile(join(directory, entry.date, name))])));
+      const expected = names.filter(name => name !== 'SHA256SUMS').map(name =>
+        `${createHash('sha256').update(files[name]).digest('hex')}  ${name}\n`).join('');
+      if (files.SHA256SUMS.toString() !== expected) throw new Error(`Checksum mismatch: ${entry.date}`);
+      const m = JSON.parse(files['manifest.json']);
+      if (m.date !== entry.date) throw new Error(`Manifest date mismatch: ${entry.date}`);
+      const base = `https://github.com/${api.repository}/releases`;
+      const variants = (m.variants ?? []).map(v => `[${v.file}](${base}/download/${entry.date}/${v.file})：${v.from} 至 ${v.to}（${v.bytes} 字节）`).join('\n\n');
+      const body = `央视频节目单 · ${entry.date}（北京时间）\n\n` +
+        `更新：${index.generatedAt}；频道：${m.channelCount}；节目：${m.programmeCount}；XML：${m.xmlBytes} 字节。\n\n` +
+        `epg.xml 为当日数据；如含 epg2.xml、epg3.xml，则分别从版本日期起覆盖两天、三天。跨午夜节目保留真实起止时间。每四小时尝试刷新；manifest.json 的 fallbackUsage 标识同日缓存及原始抓取时间。\n\n${variants}\n\n` +
+        `[本日 XML](${base}/download/${entry.date}/epg.xml) · [当天固定订阅](${base}/latest/download/epg.xml)`;
+      prepared.push({ date: entry.date, today, commit, files, body });
+    } catch (error) {
+      if (!allowPartialDates || rebuild || entry.date === today) throw error;
+      onWarning({ code: 'release-date-validation', date: entry.date, message: error.message });
+    }
   }
   if (currentDate() !== today) throw new Error('Beijing midnight crossed before publishing; regenerate schedules');
   // Destructive rebuild is explicitly opt-in and happens only after full validation.
   if (rebuild) await deleteAllReleases(api);
-  // Publish in calendar order; annotated date tags keep the UI sorted newest first.
-  prepared.sort((a, b) => a.date.localeCompare(b.date));
+  // Make today usable first; dated tags keep the UI sorted independently.
+  prepared.sort((a, b) => (a.date === today ? -1 : b.date === today ? 1 : a.date.localeCompare(b.date)));
+  let published = 0;
   for (const item of prepared) {
     if (currentDate() !== today) {
       throw new Error('Beijing midnight crossed while publishing; rerun with fresh schedules');
     }
-    const policy = await upsertRelease(api, item);
-    console.log(`${item.date}: ${policy.prerelease ? 'Pre-release' : policy.make_latest === 'true' ? 'Latest' : 'Release'}`);
+    try {
+      const policy = await upsertRelease(api, item);
+      published++;
+      console.log(`${item.date}: ${policy.prerelease ? 'Pre-release' : policy.make_latest === 'true' ? 'Latest' : 'Release'}`);
+    } catch (error) {
+      if (!allowPartialDates || rebuild || item.date === today) throw error;
+      onWarning({ code: 'release-date-publication', date: item.date, message: error.message });
+    }
   }
-  return prepared.length;
+  return published;
 }

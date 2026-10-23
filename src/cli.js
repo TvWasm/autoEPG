@@ -1,8 +1,8 @@
 import { parseArgs } from 'node:util';
 import { EpgSources } from './cctv.js';
-import { Provincial } from './provincial.js';
 import { collect, dateKey, windowFor, writeArtifacts } from './epg.js';
 import { saveRunReport, runContext, sourceFailure } from './diagnostics.js';
+import { FallbackSource, loadPublishedFallback } from './fallback.js';
 
 let output = 'dist', source;
 const report = { schemaVersion: 1, startedAt: new Date().toISOString(), ...runContext(),
@@ -18,10 +18,12 @@ try {
     'min-channels': { type: 'string', default: '50' },
     'min-today-coverage': { type: 'string', default: '0.9' },
     strict: { type: 'boolean', default: false },
+    'core-only': { type: 'boolean', default: false },
+    'fallback-repository': { type: 'string', default: process.env.GITHUB_REPOSITORY ?? '' },
     help: { type: 'boolean', default: false },
   } });
   if (values.help) {
-    console.log('npm run generate -- [--output dist] [--date YYYY-MM-DD] [--past-days 3] [--future-days 3] [--concurrency 4] [--min-channels 50] [--min-today-coverage 0.9] [--strict]');
+    console.log('npm run generate -- [--output dist] [--date YYYY-MM-DD] [--past-days 3] [--future-days 3] [--concurrency 4] [--min-channels 50] [--min-today-coverage 0.9] [--strict] [--core-only] [--fallback-repository owner/repo]');
   } else {
     output = values.output;
     report.referenceDate = values.date;
@@ -39,14 +41,20 @@ try {
     const range = windowFor(values.date, pastDays, futureDays);
     const dates = [];
     for (let day = range.start - 86400; day < range.stop; day += 86400) dates.push(dateKey(day));
-    console.log(`Fetching Yangshipin, CCTV and provincial schedules for ${values.date} (Asia/Shanghai)`);
+    console.log(`Fetching ${values['core-only'] ? 'priority Yangshipin/CCTV' : 'Yangshipin, CCTV and provincial'} schedules for ${values.date} (Asia/Shanghai)`);
     const allowPartial = !values.strict;
+    let fallback = { snapshots: [], warnings: [] };
+    if (allowPartial && values['fallback-repository']) {
+      fallback = await loadPublishedFallback(values['fallback-repository'], dates.filter(d => d >= values.date));
+      console.log(`Validated ${fallback.snapshots.length} previously published daily fallback snapshots`);
+    }
     source = new EpgSources({ dates, allowPartial,
-      provincial: new Provincial({ dates, today: values.date,
+      provincial: values['core-only'] ? null : new (await import('./provincial.js')).Provincial({ dates, today: values.date,
         allowPartial,
         onProgress: (done, total) => { if (done % 100 === 0 || done === total) console.log(`Official provincial schedules ${done}/${total}`); },
       }),
     });
+    if (allowPartial && values['fallback-repository']) source = new FallbackSource(source, fallback.snapshots, { dates });
     const dataset = await collect(source, {
       today: values.date, pastDays, futureDays,
       concurrency: integer('concurrency', 1, 8), minChannels: integer('min-channels', 1, 1000),
@@ -54,6 +62,15 @@ try {
       allowPartial,
       onProgress: (done, total) => { if (done % 50 === 0 || done === total) console.log(`Schedules ${done}/${total}`); },
     });
+    dataset.manifest.fallbackUsage = [...(source.usage?.values() ?? [])];
+    dataset.manifest.publicationTier = values['core-only'] ? 'core' : 'full';
+    dataset.manifest.warnings.push(...fallback.warnings);
+    for (const warning of source.source?.warnings ?? source.warnings ?? []) {
+      if (!dataset.manifest.warnings.some(w => JSON.stringify(w) === JSON.stringify(warning))) dataset.manifest.warnings.push(warning);
+    }
+    if (dataset.manifest.fallbackUsage.length) dataset.manifest.warnings.push({ code: 'cached-schedules',
+      message: `使用 ${dataset.manifest.fallbackUsage.length} 个同频道同日期已发布节目单作为兜底，详见 manifest.json fallbackUsage` });
+    dataset.manifest.partial ||= dataset.manifest.warnings.length > 0;
     if (dataset.manifest.discardedProgrammes.length) {
       console.warn(`Skipped ${dataset.manifest.discardedProgrammes.length} zero-duration programme records; details in manifest.json discardedProgrammes`);
     }
@@ -74,6 +91,8 @@ try {
       programmeCount: dataset.manifest.programmeCount, todayCoverage: dataset.manifest.todayChannelCoverage, requestedDates: dataset.manifest.requestedDates };
     report.failures = dataset.manifest.failures;
     report.warnings = dataset.manifest.warnings;
+    report.fallbackUsage = dataset.manifest.fallbackUsage;
+    report.publicationTier = dataset.manifest.publicationTier;
     report.generatedAt = dataset.manifest.generatedAt;
     await saveRunReport(output, report);
     if (report.failures.length) console.warn(`Partial EPG generated with ${report.failures.length} failed/skipped source request(s); see run-report.json and manifest.json`);
